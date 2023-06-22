@@ -1,0 +1,2 @@
+api.php		-> Funciones tipo postLogin, getPerfil, etc
+persistencia.php	-> Conexion a la Base de Datos
