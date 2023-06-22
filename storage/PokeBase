@@ -32,3 +32,8 @@ CREATE TABLE registro (
   id_pokemon int
 );
 
+CREATE TABLE gachapon (
+  id_usuario int,
+  tiempo time
+);
+
