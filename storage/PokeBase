@@ -4,7 +4,7 @@ USE PokeBase;
 
 CREATE TABLE pokemon (
   id INT PRIMARY KEY,
-  nombre_pokemon CHAR(120)
+  nombre_pokemon VARCHAR(120)
 );
 
 INSERT INTO pokemon (id, nombre_pokemon) VALUES
