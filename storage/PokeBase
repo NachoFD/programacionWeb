@@ -18,3 +18,17 @@ INSERT INTO pokemon (id, nombre_pokemon) VALUES
 (8, 'Gyarados'),
 (9, 'Eevee'),
 (10, 'Dragonite');
+
+CREATE TABLE usuarios (
+  id INT PRIMARY KEY,
+  nombre_usuario VARCHAR(250),
+  email VARCHAR(250),
+  contraseña VARCHAR(250)
+);
+
+CREATE TABLE registro (
+  id INT PRIMARY KEY,
+  id_usuario int,
+  id_pokemon int
+);
+
