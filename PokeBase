@@ -1,0 +1,20 @@
+CREATE DATABASE PokeBase;
+
+USE PokeBase;
+
+CREATE TABLE pokemon (
+  id INT PRIMARY KEY,
+  nombre_pokemon CHAR(120)
+);
+
+INSERT INTO pokemon (id, nombre_pokemon) VALUES
+(1, 'Bulbasaur'),
+(2, 'Charmander'),
+(3, 'Squirtle'),
+(4, 'Pikachu'),
+(5, 'Jigglypuff'),
+(6, 'Meowth'),
+(7, 'Snorlax'),
+(8, 'Gyarados'),
+(9, 'Eevee'),
+(10, 'Dragonite');
