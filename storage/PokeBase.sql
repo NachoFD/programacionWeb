@@ -20,10 +20,10 @@ INSERT INTO pokemon (id, nombre_pokemon) VALUES
 (10, 'Dragonite');
 
 CREATE TABLE usuarios (
-  id INT PRIMARY KEY,
-  nombre_usuario VARCHAR(250),
+  id INT PRIMARY KEY auto_increment,
+  nombre_usuario VARCHAR(30),
   email VARCHAR(250),
-  contraseña VARCHAR(250)
+  contraseña VARCHAR(30)
 );
 
 CREATE TABLE registro (
