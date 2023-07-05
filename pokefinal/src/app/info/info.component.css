@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+}
+.content {
+    margin-left: 15px;
+}
+.footer {
+    color: white;
+    background-color: black;
+    padding: 15px;
+}
+
+.fondo {
+    background-image: url('http://localhost/programacionweb/recursos/fondoInfo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
