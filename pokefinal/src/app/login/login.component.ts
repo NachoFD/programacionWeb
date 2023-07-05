@@ -28,7 +28,7 @@ postdata(angForm1: { value: { email: any; password: any; }; })
     .pipe(first())
     .subscribe(
       data => {
-        const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
+        const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/inicio';
         this.router.navigate([redirect]);
       },
 

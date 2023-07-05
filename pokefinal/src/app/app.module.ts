@@ -9,13 +9,15 @@ import { RegisterComponent } from './register/register.component';
 
 import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
