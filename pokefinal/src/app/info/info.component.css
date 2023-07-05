@@ -11,20 +11,24 @@ html, body {
     min-height: 100%;
 }
 
-.footer {
-    color: white;
-    background-color: black;
-    padding: 20px;
-}
-
 .header {
     background-image: url('http://localhost/programacionweb/recursos/fondoInfo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.info {
+.presentacion {
     background-color: aquamarine;
     padding: 30px;
 }
-  
+
+.cuerpo{
+    background-color: cadetblue;
+    padding: 30px;
+}
+
+.footer {
+    color: white;
+    background-color: black;
+    padding: 20px;
+}
