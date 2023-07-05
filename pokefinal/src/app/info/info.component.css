@@ -3,6 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -13,12 +14,17 @@ html, body {
 .footer {
     color: white;
     background-color: black;
-    padding: 15px;
+    padding: 20px;
 }
 
-.fondo {
+.header {
     background-image: url('http://localhost/programacionweb/recursos/fondoInfo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-  }
+}
+
+.info {
+    background-color: aquamarine;
+    padding: 30px;
+}
   
