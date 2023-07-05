@@ -9,9 +9,7 @@ html, body {
     justify-content: space-between;
     min-height: 100%;
 }
-.content {
-    margin-left: 15px;
-}
+
 .footer {
     color: white;
     background-color: black;
