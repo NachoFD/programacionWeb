@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InfoComponent } from './info/info.component';
+import { AmigosComponent } from './amigos/amigos.component';
+import { PokedexComponent } from './pokedex/pokedex.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { InfoComponent } from './info/info.component';
     InicioComponent,
     LoginComponent,
     RegisterComponent,
-    InfoComponent
+    InfoComponent,
+    AmigosComponent,
+    PokedexComponent
   ],
   imports: [
     BrowserModule,

@@ -3,30 +3,26 @@ html, body {
     margin: 0;
     padding: 0;
 }
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100%;
-}
-.content {
-    margin-left: 15px;
-}
+
 .footer {
     text-align: center;
     color: white;
     background-color: black;
     padding: 15px;
     width: 100%;    
-    position: absolute;
-    bottom: 0;
 }
 
 .fondo {
-    background-image: url('https://img.freepik.com/fotos-premium/hermoso-bosque-natural-rural-ilustracion-estilo-animacion-fondo-anime_703951-338.jpg');
+    background-image: url('https://pbs.twimg.com/media/D-EkX_hWkAEXeok.jpg:large');
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    height: 700px;
-    position: relative;
+}
 
-  }
+.opcionFondo{
+    background-color: white;
+    height: 500px;
+    width: 430px;
+    border-radius: 20px;
+    border: 12px solid black;
+}

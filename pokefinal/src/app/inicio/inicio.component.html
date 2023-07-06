@@ -1,18 +1,53 @@
 <div class="fondo">
+    <div class="container">
+      <div class="row justify-content-center align-items-center" style="height: 100vh;">
+        <div class="d-flex justify-content-center">
 
-    <div class="content">
-        <br>
+          <div id="AMIGOS" class="mr-3 opcionFondo" routerLink="/amigos" routerLinkActive="active" 
+            style="margin-right: 50px; text-align: center; background-color: cadetblue;" 
+            onmouseover="this.style.borderColor = 'blue'; imagenAmigos.style='height: 300px'" 
+            onmouseout="this.style.borderColor = 'black'; imagenAmigos.style='height: 250px; margin-top: 30px;' ">
+
+            <h1 style="color: black; text-align: center; padding-top: 50px; font-size: 50px;"> <strong>AMIGOS</strong></h1>
+
+            <img id="imagenAmigos" src="https://cdn.icon-icons.com/icons2/851/PNG/512/Mobile_Phone_icon-icons.com_67541.png" style="height: 250px; margin-top: 30px;">
+          
+          </div>
+
+          <div id="GATCHA" class="mr-3 opcionFondo" routerLink="/gatcha" routerLinkActive="active" 
+            style="margin-right: 50px; text-align: center; background-image: url('http://localhost/programacionweb/recursos/fondoInfo.jpg'); background-position: center;" 
+            onmouseover="this.style.borderColor = 'red'; imagenGatcha.style='height: 250px; margin-top: 30px;'" 
+            onmouseout="this.style.borderColor = 'black'; imagenGatcha.style='height: 220px; margin-top: 30px;'">
+
+            <h1 style="color: white; text-align: center; padding-top: 50px; font-size: 60px;"> <strong>00:00:00</strong></h1>
+
+            <img id="imagenGatcha" src="https://i.pinimg.com/originals/e7/cd/e7/e7cde7fd0b8b992d7b74d2580a70b624.png" style="height: 220px; margin-top: 30px;">
+
+          </div>
+
+          <div id="POKEDEX" class="mr-3 opcionFondo" routerLink="/pokedex" routerLinkActive="active" 
+          style="text-align: center; background-color: #977FDB;"
+          onmouseover="this.style.borderColor = '#5B27EF'; imagenPokedex.style='height: 250px; margin-top: 30px;'" 
+          onmouseout="this.style.borderColor = 'black'; imagenPokedex.style='height: 210px; margin-top: 40px;'">
+
+            <h1 style="color: black; text-align: center; padding-top: 50px; font-size: 50px;"> <strong>POKEDEX</strong></h1>
+
+            <img id="imagenPokedex" src="https://cdn-icons-png.flaticon.com/128/188/188940.png" style="height: 210px; margin-top: 40px;">
+          </div>
+
+        </div>
+      </div>
     </div>
+  </div>
+  
 
-    <div class="footer">
-        <h6 style="text-align: center; padding-top: 20px;">Creado por:
-            <br><br>
-            <a href="https://www.youtube.com" style="padding-right: 10px;" target="_blank">Ignacio Damiani</a>
-            <a href="https://www.youtube.com" target="_blank">Aaron Galli</a>
-        </h6> 
-    
-        <br><br><br>
+<div class="footer">
+    <h6 style="text-align: center; padding-top: 20px;">Creado por:
+    <br><br>
+        <a href="https://www.youtube.com" style="padding-right: 10px;" target="_blank">Ignacio Damiani</a>
+        <a href="https://www.youtube.com" target="_blank">Aaron Galli</a>
+    </h6>     
+    <br><br><br>
         <p style="text-align: center;"> Esta pagina web fue creada utilizando <a href="https://angular.io/" target="_blank">ANGULAR</a> y <a href="https://www.php.net/" target="_blank">PHP</a></p>
-    </div>
-
 </div>
+
