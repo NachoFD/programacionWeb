@@ -7,11 +7,15 @@ import { InfoComponent } from './info/info.component';
 import { AuthguardGuard } from './authguard.guard';
 import { AmigosComponent } from './amigos/amigos.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { GatchaComponent } from './gatcha/gatcha.component';
 
 const routes: Routes = [
 { path: '', component: InfoComponent },
 { path: 'info', component: InfoComponent},
 { path: 'amigos', component: AmigosComponent},
+{ path: 'perfil', component: PerfilComponent},
+{ path: 'gatcha', component: GatchaComponent},
 { path: 'pokedex', component: PokedexComponent},
 { path: 'login', component: LoginComponent },
 { path: 'inicio', component: InicioComponent },

@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InfoComponent } from './info/info.component';
 import { AmigosComponent } from './amigos/amigos.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
+import { GatchaComponent } from './gatcha/gatcha.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { PokedexComponent } from './pokedex/pokedex.component';
     RegisterComponent,
     InfoComponent,
     AmigosComponent,
-    PokedexComponent
+    PokedexComponent,
+    GatchaComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
