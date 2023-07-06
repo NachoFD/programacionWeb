@@ -1,0 +1,13 @@
+.fondo {
+    background-image: url("https://w.forfun.com/fetch/7b/7b18be1395d99e3035b310dfc109cb40.jpeg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+.footer {
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 15px;
+    width: 100%;    
+}

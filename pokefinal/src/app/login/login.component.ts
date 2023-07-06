@@ -33,7 +33,7 @@ postdata(angForm1: { value: { email: any; password: any; }; })
       },
 
       error => {
-        alert("User name or password is incorrect")
+        alert("Nombre de Usuario o Contraseña incorrectos!")
       });
 }
   get email() { return this.angForm.get('email'); }
