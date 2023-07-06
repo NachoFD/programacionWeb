@@ -1,5 +1,13 @@
 .fondo{
-    background-image: url("https://assets.pokemon.com//assets/cms2-es-es/img/misc/virtual-backgrounds/pokemon/grookey.jpg");
+    background-image: url("https://i.imgur.com/bLxcjh3.png");
     background-position: center;
     background-size: cover;
+}
+
+.footer {
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 15px;
+    width: 100%;    
 }
