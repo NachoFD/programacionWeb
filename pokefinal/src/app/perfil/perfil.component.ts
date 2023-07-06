@@ -17,4 +17,9 @@ export class PerfilComponent {
       this.router.navigate(['/login']); // Redireccionar al componente de inicio de sesión
     }
   }
+
+  logout(){
+    this.dataService.deleteToken();
+    window.location.href = "/info";
+  }
 }
