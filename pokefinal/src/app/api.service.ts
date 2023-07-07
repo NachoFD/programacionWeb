@@ -20,7 +20,7 @@ export class ApiService {
     return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
       .pipe(map(Users => {
   
-        this.setToken(Users[0].name);
+        this.setToken(Users[0].nombre_usuario, Users[0].id);
         this.getLoggedInName.emit(true);
         return Users;
       }));
@@ -35,16 +35,22 @@ public userregistration(name: any,email: any, pwd: any) {
 
 
 //token
-setToken(token: string) {
+setToken(token: string, id: string) {
   localStorage.setItem('token', token);
+  localStorage.setItem('id', id);
 }
 
 getToken() {
   return localStorage.getItem('token');
 }
 
+getId() {
+  return localStorage.getItem('id');
+}
+
 deleteToken() {
   localStorage.removeItem('token');
+  localStorage.removeItem('id');
 }
 
 isLoggedIn() {

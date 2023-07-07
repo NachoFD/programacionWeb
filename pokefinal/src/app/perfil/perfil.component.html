@@ -5,10 +5,14 @@
 
                     <h1 style="color: black; font-size: 50px; text-align: center"> PERFIL </h1>
 
-                    <p style="color: black; font-size: 30px; margin-top: 50px;"> <strong>USUARIO: </strong> <a style="color: black;">Nombre de Usuario</a> </p>
-                    <p style="color: black; font-size: 30px; margin-top: 20px;"> <strong>EMAIL: </strong> <a>email@gmail.com</a></p>
-                    <p style="color: black; font-size: 30px; margin-top: 20px;"> <strong>AMIGOS: </strong> <a>0</a></p>
-                    <p style="color: black; font-size: 30px; margin-top: 20px;"> <strong>POKEMONES: </strong> <a>0/50</a></p>
+                    <p style="color: black; font-size: 30px; margin-top: 50px;"> <strong>USUARIO: </strong> 
+                      <a id="nombre_usuario">{{nombreUsuario}}</a> </p>
+                    <p style="color: black; font-size: 30px; margin-top: 20px;"> <strong>EMAIL: </strong> 
+                      <a id="email">{{emailUsuario}}</a></p>
+                    <p style="color: black; font-size: 30px; margin-top: 20px;"> <strong>AMIGOS: </strong> 
+                      <a id="cant_amigos">{{cantAmigos}}</a></p>
+                    <p style="color: black; font-size: 30px; margin-top: 20px;"> <strong>POKEMONES: </strong> 
+                      <a id="cant_pokemones">{{cantPokemones}}/50</a></p>
 
                     <a class="nav-link" routerLink="" (click)="logout()" routerLinkActive="active" style="color: red; text-align: center; font-size: 25px; margin-top: 60px; -webkit-text-stroke: 0.8px black;"> <strong>CERRAR SESION</strong> </a>
             </div>

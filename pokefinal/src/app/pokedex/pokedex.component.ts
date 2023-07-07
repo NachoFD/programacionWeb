@@ -17,5 +17,4 @@ export class PokedexComponent {
       this.router.navigate(['/login']); // Redireccionar al componente de inicio de sesión
     }
   }
-
 }

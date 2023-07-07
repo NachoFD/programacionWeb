@@ -32,6 +32,12 @@ CREATE TABLE registro (
   id_pokemon int
 );
 
+CREATE TABLE amigos (
+  id INT PRIMARY KEY auto_increment,
+  id_usuario int,
+  id_amigo int
+);
+
 CREATE TABLE gachapon (
   id_usuario int,
   tiempo time
