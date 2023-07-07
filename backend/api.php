@@ -14,7 +14,7 @@
 
         $id = $_GET['id'];
 
-        // Realizar la consulta a la base de datos
+        // Realiza la consulta a la base de datos
         $perfil = "SELECT u.nombre_usuario, u.email FROM usuarios u WHERE u.id = $id";
         $pokemones = "SELECT COUNT(DISTINCT r.id_pokemon) AS cantidad_pokemones FROM usuarios u JOIN registro r ON u.id = r.id_usuario WHERE u.id = $id GROUP BY u.id";
         $amigos = "SELECT COUNT(DISTINCT a.id) AS cantidad_amigos FROM usuarios u JOIN amigos a ON u.id = a.id_usuario OR u.id = a.id_amigo WHERE u.id = 1 GROUP BY u.id";
@@ -72,6 +72,86 @@
             echo $jsonDatosPerfil;
         } else {
             // Manejar el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getPokemones(){
+        global $mysqli;
+
+        $id_usuario = $_GET['id'];
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT u.nombre_usuario, u.email FROM usuarios u WHERE u.id = $id_usuario";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rowConsulta = $resulConsulta->fetch_assoc();
+        
+            // Obtener los datos de los resultados
+            $id = $rowConsulta['id'];
+            $nombre = $rowConsulta['nombre_pokemon'];
+            $imagen = $rowConsulta['url_imagen'];
+
+            // Crear el array con los datos del perfil
+            $datos = array(
+                'id' => $id,
+                'nombre_pokemon' => $nombre,
+                'url_imagen' => $imagen
+            );
+
+            // Convertir los datos a JSON
+            $jsonDatos = json_encode($datos);
+
+            // Imprime el JSON como respuesta
+            echo $jsonDatos;
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getColeccion(){
+        global $mysqli;
+
+        $id_usuario = $_GET['id'];
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT u.nombre_usuario, u.email FROM usuarios u WHERE u.id = $id_usuario";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rowConsulta = $resulConsulta->fetch_assoc();
+        
+            // Obtener los datos de los resultados
+            $id = $rowConsulta['id'];
+            $nombre = $rowConsulta['nombre_pokemon'];
+            $imagen = $rowConsulta['url_imagen'];
+
+            // Crear el array con los datos del perfil
+            $datos = array(
+                'id' => $id,
+                'nombre_pokemon' => $nombre,
+                'url_imagen' => $imagen
+            );
+
+            // Convertir los datos a JSON
+            $jsonDatos = json_encode($datos);
+
+            // Imprime el JSON como respuesta
+            echo $jsonDatos;
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
             echo "Error en la consulta: " . $mysqli->error;
         }
     }
