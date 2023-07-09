@@ -21,11 +21,21 @@
       <!-- DESPUES DE INICIAR SESION -->
 
       <li class="nav-item">
-        <a class="nav-link" *ngIf="logoutbtn"  routerLink="perfil" routerLinkActive="active" style="color: white;">PERFIL</a>
+        <a class="nav-link" *ngIf="logoutbtn"  routerLink="perfil" routerLinkActive="active" style="color: white;" 
+          onmouseenter="this.style = 'color: red'"
+          onmouseleave="this.style = 'color: white'">PERFIL</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" *ngIf="logoutbtn"  routerLink="amigos" routerLinkActive="active" style="color: white;">AMIGOS</a>
+        <a class="nav-link" *ngIf="logoutbtn"  routerLink="amigos" routerLinkActive="active" style="color: white;" 
+        onmouseenter="this.style = 'color: red'"
+        onmouseleave="this.style = 'color: white'">AMIGOS</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="logoutbtn"  routerLink="regalos" routerLinkActive="active" style="color: white;" 
+        onmouseenter="this.style = 'color: red'"
+        onmouseleave="this.style = 'color: white'">REGALOS</a>
       </li>
 
       <!-- <li class="nav-item">

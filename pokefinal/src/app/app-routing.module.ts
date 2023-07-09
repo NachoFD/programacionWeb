@@ -10,12 +10,14 @@ import { PokedexComponent } from './pokedex/pokedex.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { GatchaComponent } from './gatcha/gatcha.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
+import { RegalosComponent } from './regalos/regalos.component';
 
 const routes: Routes = [
 { path: '', component: InfoComponent },
 { path: 'info', component: InfoComponent},
 { path: 'amigos', component: AmigosComponent},
 { path: 'perfil', component: PerfilComponent},
+{ path: 'regalos', component: RegalosComponent},
 { path: 'gatcha', component: GatchaComponent},
 { path: 'pokedex', component: PokedexComponent},
 { path: 'pokemon/:id', component: PokemonComponent},

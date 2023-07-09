@@ -18,6 +18,7 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegalosComponent } from './regalos/regalos.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PokedexComponent,
     GatchaComponent,
     PerfilComponent,
-    PokemonComponent
+    PokemonComponent,
+    RegalosComponent
   ],
   imports: [
     BrowserModule,

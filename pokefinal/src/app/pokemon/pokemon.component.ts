@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-pokemon',
@@ -17,13 +18,18 @@ export class PokemonComponent implements OnInit {
   habilidad: any;
   url_imagen: any;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private dataService: ApiService, private router: Router) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const pokemonId = params.get('id');
       this.getPokemonData(pokemonId);
     });
+
+      // Verificar si el usuario está logeado al cargar el componente
+      if (!this.dataService.isLoggedIn()) {
+        this.router.navigate(['/login']); // Redireccionar al componente de inicio de sesión
+      }
   }
 
   getPokemonData(pokemonId: any) {

@@ -162,4 +162,36 @@
             echo "Error en la consulta: " . $mysqli->error;
         }
     }
+
+    function getUsuario(){
+        global $mysqli;
+
+        $nombre_usuario = $_GET['usuario'];
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = '$nombre_usuario';";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+
+        while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+            $rows[] = $rowConsulta;
+        }
+
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getAmigos(){
+    }
 ?>
