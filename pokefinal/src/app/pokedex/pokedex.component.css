@@ -13,8 +13,23 @@
     height: 110px;
 }
 
-.pokemon:hover{
+.coleccion{
+    background-color: white;
+    border-radius: 30px;
+    border: 6px solid black;
+    margin: 10px;
+    height: 110px;
+}
+
+.coleccion:hover{
     background-color: aqua;
+    border-radius: 30px;
+    border: 10px solid black;
+    margin: 10px;
+}
+
+.pokemon:hover{
+    background-color: red;
     border-radius: 30px;
     border: 10px solid black;
     margin: 10px;

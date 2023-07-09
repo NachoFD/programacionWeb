@@ -16,6 +16,9 @@ import { GatchaComponent } from './gatcha/gatcha.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +37,11 @@ import { PokemonComponent } from './pokemon/pokemon.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
