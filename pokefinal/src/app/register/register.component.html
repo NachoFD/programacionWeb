@@ -6,19 +6,25 @@
             <div style="background-color: #21386E; padding: 20px; border-radius: 30px;">
 
                 <h2 class="text-center" style="margin: 20px; color: white;"> <strong>REGISTRARSE</strong> </h2>
+                
                 <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" style="margin: 20px;">
+
                   <div class="form-group" style="margin-top: 10px;">
                     <input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Usuario">
                   </div>
+                  
                   <div class="form-group" style="margin-top: 10px;">
                     <input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
                   </div>
+
                   <div class="form-group" style="margin-top: 10px;">
                     <input type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Contraseña">
                   </div>
+
                   <div style="text-align: center; margin-top: 20px;">
                     <button type="submit" class="btn btn-success">Registrarse</button>
                   </div>
+
                 </form>
 
             </div>

@@ -13,15 +13,15 @@
           </div>
         </div>
 
-        <div id="buscar" class="buscar">
+        <div id="buscar" class="buscar"  style="text-align: center;">
           <h3 style="text-align: center;"> <strong>BUSCAR</strong> </h3>
 
           <form (submit)="buscarUsuario($event)" style="margin-bottom: 20px;">
             <input type="text" placeholder="Ingrese el usuario" [(ngModel)]="nombreUsuario" name="nombreUsuario" style="border-radius: 15px; padding: 10px; width: 200px;">
           </form>
 
-          <div style="text-align: center;">
-            <p *ngFor="let usuario of busqueda" class="buscado">{{usuario.nombre_usuario}}</p>
+          <div>
+            <h3 *ngFor="let usuario of busqueda" class="buscado">{{usuario.nombre_usuario}}</h3>
           </div>
 
         </div>

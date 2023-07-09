@@ -229,5 +229,43 @@
             echo "Error en la consulta: " . $mysqli->error;
         }
     }
+
+    function getRepetido(){
+        global $mysqli;
+    
+        $name = $_GET['usuario'];
+    
+        // Guarda la consulta en una variable
+        $consulta = "
+            SELECT *
+            FROM usuarios 
+            WHERE nombre_usuario = '$name'";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+    
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+    
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+    
+            if ($rows == null) {
+                $response = array("repetido" => false); // Crea el objeto JSON con 'repetido' en 'false'
+            } else {
+                $response = array("repetido" => true); // Crea el objeto JSON con 'repetido' en 'true'
+            }
+
+            // Imprime el JSON como respuesta
+            echo json_encode($response);
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }    
     
 ?>

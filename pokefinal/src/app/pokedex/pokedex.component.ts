@@ -49,7 +49,6 @@ export class PokedexComponent {
   }
 
   public mostrarMensaje(){
-    console.log("MENSAJE")
     this.snackBar.open('El Pokemon aun no ha sido desbloqueado!', 'Cerrar', {
       duration: 4000, // Duración en milisegundos
       horizontalPosition: 'center', // Posición horizontal del mensaje
