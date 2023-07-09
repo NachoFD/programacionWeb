@@ -1,44 +1,32 @@
 <h1 style="font-size: 40px; text-align: center; padding: 10px;"> <strong>POKEDEX</strong> </h1>
-<div class="fondo" style="height: 100vh;">
+<div class="fondo">
   <div style="display: flex; justify-content: space-around; align-items: flex-start; margin-top: 30px;">
 
     <div style="width: 50%; background-color: rgba(0, 0, 0, 0.5); padding: 25px; border-radius: 30px; margin-right: 10px;">
       <h2 style="font-size: 40px; text-align: center; margin-bottom: 20px; color: white;"> <strong>EN COLECCION</strong> </h2>
       <div id="coleccion" style=" display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-  
+        <img *ngFor="let pokemon of coleccion" [src]="pokemon.url_imagen" class="pokemon" (click)="getPokemon(pokemon.id)">
       </div>
     </div>
 
     <div style="width: 50%; background-color: rgba(0, 0, 0, 0.5); padding: 25px; border-radius: 30px; margin-left: 10px;">
       <h2 style="font-size: 40px; text-align: center; margin-bottom: 20px; color: white;"> <strong>SIN DESBLOQUEAR</strong> </h2>
       <div id="bloqueado" style=" display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/013.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/019.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/021.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/023.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/027.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/029.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/039.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/041.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/043.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/046.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/048.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/052.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/054.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/056.png" class="pokemon">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/058.png" class="pokemon">
-          <img src="https://static.vecteezy.com/system/resources/thumbnails/007/126/739/small/question-mark-icon-free-vector.jpg" class="pokemon">
+        <img *ngFor="let pokemon of pokemones" [src]="pokemon.url_imagen" class="pokemon" (click)="getPokemon(pokemon.id)">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/007/126/739/small/question-mark-icon-free-vector.jpg" class="pokemon">
       </div>
     </div>
     
   </div>
+</div>
+
+<div class="footer">
+  <h6 style="text-align: center; padding-top: 20px;">Creado por:
+      <br><br>
+      <a href="https://www.youtube.com" style="padding-right: 10px;" target="_blank">Ignacio Damiani</a>
+      <a href="https://www.youtube.com" target="_blank">Aaron Galli</a>
+  </h6> 
+
+  <br><br><br>
+  <p style="text-align: center;"> Esta pagina web fue creada utilizando <a href="https://angular.io/" target="_blank">ANGULAR</a> y <a href="https://www.php.net/" target="_blank">PHP</a></p>
 </div>

@@ -9,6 +9,7 @@ import { AmigosComponent } from './amigos/amigos.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { GatchaComponent } from './gatcha/gatcha.component';
+import { PokemonComponent } from './pokemon/pokemon.component';
 
 const routes: Routes = [
 { path: '', component: InfoComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
 { path: 'perfil', component: PerfilComponent},
 { path: 'gatcha', component: GatchaComponent},
 { path: 'pokedex', component: PokedexComponent},
+{ path: 'pokemon/:id', component: PokemonComponent},
 { path: 'login', component: LoginComponent },
 { path: 'inicio', component: InicioComponent },
 { path: 'register', component: RegisterComponent },

@@ -1,0 +1,51 @@
+<div class="fondo">
+    <h1 style="font-size: 40px; text-align: center; padding: 30px; border-bottom: 5px solid black;">
+      <strong>{{ nombre }}</strong> Nº 0{{ id }}
+    </h1>
+    <div class="pokemon-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img [src]="url_imagen" class="pokemon" [alt]="nombre">
+      
+      <div class="pokemon-details">
+        <h2 style="text-align: center; color: white;">DATOS</h2>
+        <p style="font-size: x-large;"><strong>{{ dato }}</strong></p>
+        <br>
+        <div style="text-align: center">
+          <div style="display: inline-block; margin-right: 20px;">
+            <h3 style="color: white;">ALTURA</h3>
+            <p style="text-align: center; font-size: x-large;"><strong>{{ altura }}</strong></p>
+          </div>
+          <div style="display: inline-block; margin-right: 20px;">
+            <h3 style="color: white;">CATEGORIA</h3>
+            <p style="text-align: center; font-size: x-large;"><strong>{{ categoria }}</strong></p>
+          </div>
+          <div style="display: inline-block; margin-right: 20px;">
+            <h3 style="color: white;">PESO</h3>
+            <p style="text-align: center; font-size: x-large;"><strong>{{ peso }}</strong></p>
+          </div>
+          <div style="display: inline-block;">
+            <h3 style="color: white;">HABILIDAD</h3>
+            <p style="text-align: center; font-size: x-large;"><strong>{{ habilidad }}</strong></p>
+          </div>
+        </div>
+      </div>
+      
+      <button style="border-radius: 20px; width: fit-content; padding-left: 20px; padding-right: 20px; font-size: 20px;" routerLink="/pokedex"> <strong>VOLVER</strong> </button>
+      
+    </div>
+  </div>
+  
+  <div class="footer">
+    <h6 style="text-align: center; padding-top: 20px;">
+      Creado por:
+      <br><br>
+      <a href="https://www.youtube.com" style="padding-right: 10px;" target="_blank">Ignacio Damiani</a>
+      <a href="https://www.youtube.com" target="_blank">Aaron Galli</a>
+    </h6>
+  
+    <br><br><br>
+    <p style="text-align: center;">
+      Esta pagina web fue creada utilizando <a href="https://angular.io/" target="_blank">ANGULAR</a>
+      y <a href="https://www.php.net/" target="_blank">PHP</a>
+    </p>
+  </div>
+  

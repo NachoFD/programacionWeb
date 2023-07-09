@@ -1,5 +1,5 @@
 .fondo{
-    background-image: url("https://i.ytimg.com/vi/RRIjBVsGNKg/maxresdefault.jpg");
+    background-image: url("https://i.imgur.com/SYY2mJz.png");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 20px;
@@ -18,4 +18,12 @@
     border-radius: 30px;
     border: 10px solid black;
     margin: 10px;
+}
+
+.footer {
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 15px;
+    width: 100%;    
 }

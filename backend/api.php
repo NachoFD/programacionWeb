@@ -82,7 +82,7 @@
         $id_usuario = $_GET['id'];
 
         // Guarda la consulta en una variable
-        $consulta = "SELECT u.nombre_usuario, u.email FROM usuarios u WHERE u.id = $id_usuario";
+        $consulta = "SELECT * FROM pokemon WHERE id NOT IN (SELECT id_pokemon FROM registro WHERE id_usuario = $id_usuario);";
 
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);
@@ -90,25 +90,14 @@
         if($resulConsulta)
         {
             // Guarda el resultado en Rows
-            $rowConsulta = $resulConsulta->fetch_assoc();
-        
-            // Obtener los datos de los resultados
-            $id = $rowConsulta['id'];
-            $nombre = $rowConsulta['nombre_pokemon'];
-            $imagen = $rowConsulta['url_imagen'];
+            $rows = array();
 
-            // Crear el array con los datos del perfil
-            $datos = array(
-                'id' => $id,
-                'nombre_pokemon' => $nombre,
-                'url_imagen' => $imagen
-            );
-
-            // Convertir los datos a JSON
-            $jsonDatos = json_encode($datos);
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
 
             // Imprime el JSON como respuesta
-            echo $jsonDatos;
+            echo json_encode($rows);
 
         } else {
             // Maneja el error en caso de que la consulta falle
@@ -122,7 +111,7 @@
         $id_usuario = $_GET['id'];
 
         // Guarda la consulta en una variable
-        $consulta = "SELECT u.nombre_usuario, u.email FROM usuarios u WHERE u.id = $id_usuario";
+        $consulta = "SELECT p.* FROM pokemon p JOIN registro r ON p.id = r.id_pokemon WHERE r.id_usuario = $id_usuario;";
 
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);
@@ -130,25 +119,43 @@
         if($resulConsulta)
         {
             // Guarda el resultado en Rows
-            $rowConsulta = $resulConsulta->fetch_assoc();
-        
-            // Obtener los datos de los resultados
-            $id = $rowConsulta['id'];
-            $nombre = $rowConsulta['nombre_pokemon'];
-            $imagen = $rowConsulta['url_imagen'];
+            $rows = array();
 
-            // Crear el array con los datos del perfil
-            $datos = array(
-                'id' => $id,
-                'nombre_pokemon' => $nombre,
-                'url_imagen' => $imagen
-            );
-
-            // Convertir los datos a JSON
-            $jsonDatos = json_encode($datos);
+        while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+            $rows[] = $rowConsulta;
+        }
 
             // Imprime el JSON como respuesta
-            echo $jsonDatos;
+            echo json_encode($rows);
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getPokemon_datos(){
+        global $mysqli;
+
+        $id_pokemon = $_GET['id'];
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT p.*, p.nombre_pokemon, pd.dato, pd.altura, pd.categoria, pd.peso, pd.habilidad, pd.tipo FROM pokemon p JOIN pokemon_datos pd ON p.id = pd.id_pokemon WHERE p.id = $id_pokemon;";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+
+        while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+            $rows[] = $rowConsulta;
+        }
+
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
 
         } else {
             // Maneja el error en caso de que la consulta falle

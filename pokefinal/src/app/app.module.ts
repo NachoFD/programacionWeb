@@ -14,6 +14,7 @@ import { AmigosComponent } from './amigos/amigos.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
 import { GatchaComponent } from './gatcha/gatcha.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { PokemonComponent } from './pokemon/pokemon.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AmigosComponent,
     PokedexComponent,
     GatchaComponent,
-    PerfilComponent
+    PerfilComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
