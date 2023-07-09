@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./amigos.component.css']
 })
 export class AmigosComponent {
-  nombreUsuario: string | undefined;
+  nombreUsuario: any;
   busqueda: any[] = [];
   amigos: any[] = [];
 
@@ -21,23 +21,25 @@ export class AmigosComponent {
     if (!this.dataService.isLoggedIn()) {
       this.router.navigate(['/login']); // Redireccionar al componente de inicio de sesión
     }
+
+    const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
+
+    this.buscarAmigos(idUsuario)
+  }
+
+  buscarAmigos(idUsuario: any){
+    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=amigos&id=${idUsuario}`).subscribe((usuario: any) => {
+      this.amigos = usuario;
+    });;
+
   }
 
   buscarUsuario(event: any) {
     event.preventDefault();
 
-    console.log('Buscar usuario:', this.nombreUsuario);
-
     this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=usuario&usuario=${this.nombreUsuario}`).subscribe((usuario: any) => {
       this.busqueda = usuario;
     });;
 
-    if(this.busqueda[0] == null){
-      this.snackBar.open('El usuario no existe.', '', {
-        duration: 4000, // Duración en milisegundos
-        horizontalPosition: 'center', // Posición horizontal del mensaje
-        verticalPosition: 'top' // Posición vertical del mensaje
-      });
-    }
   }  
 }

@@ -193,5 +193,41 @@
     }
 
     function getAmigos(){
+        global $mysqli;
+    
+        $id_usuario = $_GET['id'];
+    
+        // Guarda la consulta en una variable
+        $consulta = "
+            SELECT u1.nombre_usuario AS nombre_amigo
+            FROM amigos a
+            JOIN usuarios u1 ON a.id_amigo = u1.id
+            WHERE a.id_usuario = $id_usuario
+            UNION
+            SELECT u2.nombre_usuario AS nombre_usuario
+            FROM amigos a
+            JOIN usuarios u2 ON a.id_usuario = u2.id
+            WHERE a.id_amigo = $id_usuario";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+    
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+    
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+    
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
     }
+    
 ?>

@@ -7,6 +7,10 @@
 
         <div id="lista" class="lista">
           <h3 style="text-align: center;"> <strong>LISTA</strong> </h3>
+
+          <div style="text-align: center;">
+            <p *ngFor="let usuario of amigos" class="buscado">{{usuario.nombre_usuario}}</p>
+          </div>
         </div>
 
         <div id="buscar" class="buscar">
