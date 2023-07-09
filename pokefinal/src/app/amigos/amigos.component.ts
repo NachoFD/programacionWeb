@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-amigos',
@@ -11,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AmigosComponent {
   nombreUsuario: any;
-  busqueda: any[] = [];
+  busqueda: any;
   amigos: any[] = [];
 
   constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient, private snackBar: MatSnackBar) { }
@@ -37,9 +38,32 @@ export class AmigosComponent {
   buscarUsuario(event: any) {
     event.preventDefault();
 
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=usuario&usuario=${this.nombreUsuario}`).subscribe((usuario: any) => {
+    const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
+
+    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=usuario&usuario=${this.nombreUsuario}&id=${idUsuario}`).subscribe((usuario: any) => {
       this.busqueda = usuario;
     });;
+  }  
 
+  agregarAmigo(id_amigo: any) {
+    console.log(id_amigo);
+    
+    const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
+  
+    const body = {
+      usuario: id_amigo,
+      id: idUsuario
+    };
+  
+    this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=amigo', body)
+    .subscribe(
+      data => {
+        console.log(data); // Hacer algo con la respuesta si es necesario
+        location.reload(); // Recargar la página
+      },
+      error => {
+        console.error(error); // Manejar el error en caso de fallo en la solicitud
+      }
+    );
   }  
 }

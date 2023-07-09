@@ -8,20 +8,21 @@
         <div id="lista" class="lista">
           <h3 style="text-align: center;"> <strong>LISTA</strong> </h3>
 
-          <div style="text-align: center;">
-            <p *ngFor="let usuario of amigos" class="buscado">{{usuario.nombre_usuario}}</p>
+          <div style="text-align: center; margin-top: 20px;" *ngFor="let usuario of amigos">
+            <h3 class="buscado">{{usuario.nombre_amigo}}</h3>
           </div>
         </div>
 
         <div id="buscar" class="buscar"  style="text-align: center;">
           <h3 style="text-align: center;"> <strong>BUSCAR</strong> </h3>
 
-          <form (submit)="buscarUsuario($event)" style="margin-bottom: 20px;">
+          <form (submit)="buscarUsuario($event)" style="margin-bottom: 20px; margin-top: 20px;">
             <input type="text" placeholder="Ingrese el usuario" [(ngModel)]="nombreUsuario" name="nombreUsuario" style="border-radius: 15px; padding: 10px; width: 200px;">
           </form>
 
-          <div>
-            <h3 *ngFor="let usuario of busqueda" class="buscado">{{usuario.nombre_usuario}}</h3>
+          <div *ngFor="let usuario of busqueda">
+            <h3 class="buscado">{{usuario.nombre_usuario}}</h3>
+            <button style="color: black; border-radius: 20px; background-color: aquamarine; padding: 10px; margin-top: 10px;" (click)="agregarAmigo(usuario.id)"> AGREGAR </button>
           </div>
 
         </div>

@@ -167,9 +167,10 @@
         global $mysqli;
 
         $nombre_usuario = $_GET['usuario'];
+        $id_usuario = $_GET['id'];
 
         // Guarda la consulta en una variable
-        $consulta = "SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = '$nombre_usuario';";
+        $consulta = "SELECT * FROM usuarios WHERE nombre_usuario = '$nombre_usuario' AND id != $id_usuario;";
 
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);
@@ -268,4 +269,26 @@
         }
     }    
     
+    function postAmigo() {
+        global $mysqli;
+      
+        $data = json_decode(file_get_contents('php://input'), true); // Obtener los datos del cuerpo de la solicitud POST
+      
+        $id_usuario = $data['id'];
+        $id_amigo = $data['usuario'];
+      
+        // Guarda la consulta en una variable
+        $consulta = "INSERT INTO amigos (id_usuario, id_amigo) VALUES ($id_usuario, $id_amigo)";
+      
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+      
+        if ($resulConsulta) {
+          // Imprime el JSON como respuesta
+          echo json_encode('Agregado correctamente!');
+        } else {
+          // Maneja el error en caso de que la consulta falle
+          echo "Error en la consulta: " . $mysqli->error;
+        }
+      }      
 ?>
