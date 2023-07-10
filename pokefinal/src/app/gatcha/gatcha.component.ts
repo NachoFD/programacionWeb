@@ -40,5 +40,8 @@ export class GatchaComponent {
       }
     );
   }
+
+  // DESPUES DE OBTENER AL POKEMON SE MOSTRAR AL POKEMON JUNTO CON UN BOTON PARA IR AL INICIO
+  // this.router.navigate(['/inicio']);
   
 }
