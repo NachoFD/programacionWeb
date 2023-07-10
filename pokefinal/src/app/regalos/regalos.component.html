@@ -14,8 +14,8 @@
             <div *ngFor="let regalo of regalos" class="container">
                 <div class="conRegalos">
                     <h3 style="width: 40%;">{{regalo.nombre_usuario}}</h3>
-                    <img style="width: 50%;" src="{{regalo.url}}">
-                    <p style="width: 15%; margin-left: 10px;">{{regalo.fecha}}</p>
+                    <img style="width: 50%;" src="{{regalo.url_imagen}}">
+                    <p style="margin-left: 10px;">{{regalo.fecha}}</p>
                     <button class="aceptar" (click)="aceptar(regalo.id)"> <strong>ACEPTAR</strong> </button>
                     <button class="rechazar" (click)="rechazar(regalo.id)"> <strong>RECHAZAR</strong> </button>
                 </div>

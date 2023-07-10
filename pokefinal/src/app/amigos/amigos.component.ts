@@ -17,8 +17,9 @@ export class AmigosComponent {
   pokemones: any[] = [];
   hayAmigos = false;
   regalo = false;
+  id_amigo: any;
 
-  constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient) { }
+  constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     // Verificar si el usuario está logeado al cargar el componente
@@ -96,17 +97,16 @@ export class AmigosComponent {
     console.log("Mensaje: " , id)
   }
   
-  regalar(id: any){
-    console.log("Regalo: ", id)
+  regalar(id_amigo: any){
+    console.log("Amigo: ", id_amigo)
+    this.id_amigo = id_amigo
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
 
     this.regalo = true;
-    this.buscarPokemonesRepetidos(idUsuario)
+    this.buscarPokemonesRepetidos()
   }
 
-  buscarPokemonesRepetidos(id: any){
-    console.log(id)
-
+  buscarPokemonesRepetidos(){
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
 
     this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=pokemonesRepetidos&id=${idUsuario}`).subscribe((pokemon: any) => {
@@ -114,15 +114,37 @@ export class AmigosComponent {
     });;
   }
 
-  enviarRegalo(id: any){
-    console.log(id)
+  enviarRegalo(id_pokemon: any){
+    console.log("Pokemon:" , id_pokemon)
 
     const confirmacion = window.confirm('¿Estás seguro de enviar este regalo?');
     
     if (confirmacion) {
       const idUsuario = this.dataService.getId();
       
-
+      const body = {
+        id_usuario: idUsuario,
+        id_destino: this.id_amigo,
+        id_pokemon: id_pokemon
+      };
+    
+      this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=regalo', body)
+      .subscribe(
+        data => {
+          console.log(data); // Hacer algo con la respuesta si es necesario
+          
+          this.snackBar.open('Se envio el regalo!', 'Cerrar', {
+            duration: 4000, // Duración en milisegundos
+            horizontalPosition: 'center', // Posición horizontal del mensaje
+            verticalPosition: 'top' // Posición vertical del mensaje
+          }).afterDismissed().subscribe(() => {
+            location.reload(); // Recargar la página después de que se cierre el SnackBar
+          });
+        },
+        error => {
+          console.error(error); // Manejar el error en caso de fallo en la solicitud
+        }
+      );
     }
   }
 }

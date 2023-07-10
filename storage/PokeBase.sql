@@ -91,7 +91,7 @@ CREATE TABLE regalos (
   id_usuario int,
   id_destino int,
   id_pokemon int,
-  fecha date
+  fecha VARCHAR(200)
 );
 
 CREATE TABLE amigos (
