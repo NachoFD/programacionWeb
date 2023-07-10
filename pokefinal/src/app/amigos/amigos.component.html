@@ -1,5 +1,5 @@
 <div class="fondo">
-    <div style="height: 100vh;">
+    <div style="min-height: 100vh;">
   
       <h1 style="font-size: 70px; text-align: center; padding-top: 20px;"> <strong>AMIGOS</strong> </h1>
   
@@ -8,8 +8,10 @@
         <div id="lista" class="lista">
           <h3 style="text-align: center;"> <strong>LISTA</strong> </h3>
 
-          <div style="text-align: center; margin-top: 20px;" *ngFor="let usuario of amigos">
-            <h3 class="buscado">{{usuario.nombre_amigo}}</h3>
+          <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of amigos">
+            <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
+            <img class="regalo" style="width: 15%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalo(usuario.id)">
+            <img class="mensaje" style="width: 15%;" src="http://localhost/programacionweb/recursos/mensaje.png" (click)="mensaje(usuario.id)">
           </div>
         </div>
 

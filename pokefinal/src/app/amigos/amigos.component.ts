@@ -65,5 +65,13 @@ export class AmigosComponent {
         console.error(error); // Manejar el error en caso de fallo en la solicitud
       }
     );
-  }  
+  }
+  
+  mensaje(id: any){
+    console.log("Mensaje: " , id)
+  }
+  
+  regalo(id: any){
+    console.log("Regalo: ", id)
+  }
 }

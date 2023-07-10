@@ -200,12 +200,12 @@
     
         // Guarda la consulta en una variable
         $consulta = "
-            SELECT u1.nombre_usuario AS nombre_amigo
+            SELECT *
             FROM amigos a
             JOIN usuarios u1 ON a.id_amigo = u1.id
             WHERE a.id_usuario = $id_usuario
             UNION
-            SELECT u2.nombre_usuario AS nombre_usuario
+            SELECT *
             FROM amigos a
             JOIN usuarios u2 ON a.id_usuario = u2.id
             WHERE a.id_amigo = $id_usuario";
@@ -290,5 +290,9 @@
           // Maneja el error en caso de que la consulta falle
           echo "Error en la consulta: " . $mysqli->error;
         }
-      }      
+    }      
+
+    function postMensaje(){
+        
+    }
 ?>
