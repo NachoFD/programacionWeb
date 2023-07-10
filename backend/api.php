@@ -319,7 +319,7 @@
 
         if ($resulConsulta) {
           // Imprime el JSON como respuesta
-          echo json_encode('Agregado correctamente!');
+          echo json_encode($id_pokemon);
         } else {
           // Maneja el error en caso de que la consulta falle
           echo "Error en la consulta: " . $mysqli->error;

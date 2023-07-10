@@ -30,7 +30,7 @@ export class GatchaComponent {
       id: idUsuario
     };
   
-    this.httpClient.post<any>('http://localhost/programacionwebcopia/backend/api.php?accion=Gachapon', body)
+    this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=Gachapon', body)
     .subscribe(
       data => {
         console.log(data); // Hacer algo con la respuesta si es necesario
