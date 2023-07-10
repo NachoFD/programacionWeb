@@ -14,6 +14,7 @@ export class AmigosComponent {
   nombreUsuario: any;
   busqueda: any;
   amigos: any[] = [];
+  hayAmigos = false;
 
   constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient, private snackBar: MatSnackBar) { }
 
@@ -26,6 +27,10 @@ export class AmigosComponent {
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
 
     this.buscarAmigos(idUsuario)
+
+    if(this.amigos != null){
+      this.hayAmigos = true;
+    }
   }
 
   buscarAmigos(idUsuario: any){
@@ -66,6 +71,25 @@ export class AmigosComponent {
       }
     );
   }
+
+  eliminarAmigo(id_amigo: any) {
+    const confirmacion = window.confirm('¿Estás seguro de eliminar a este amigo?');
+    
+    if (confirmacion) {
+      const idUsuario = this.dataService.getId();
+      
+      this.httpClient.delete<any>(`http://localhost/programacionweb/backend/api.php?accion=amigo&id=${idUsuario}&id_amigo=${id_amigo}`)
+        .subscribe(
+          data => {
+            console.log(data); // Hacer algo con la respuesta si es necesario
+            location.reload(); // Recargar la página
+          },
+          error => {
+            console.error(error); // Manejar el error en caso de fallo en la solicitud
+          }
+        );
+    }
+  }  
   
   mensaje(id: any){
     console.log("Mensaje: " , id)

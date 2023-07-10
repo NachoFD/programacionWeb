@@ -7,11 +7,17 @@
 
         <div id="lista" class="lista">
           <h3 style="text-align: center;"> <strong>LISTA</strong> </h3>
+          <div *ngIf="hayAmigos">
+            <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of amigos">
+              <img class="eliminar" src="https://cdn-icons-png.flaticon.com/512/2/2104.png" (click)="eliminarAmigo(usuario.id)">
+              <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
+              <img class="regalo" style="width: 15%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalo(usuario.id)">
+              <img class="mensaje" style="width: 15%;" src="http://localhost/programacionweb/recursos/mensaje.png" (click)="mensaje(usuario.id)">
+            </div>
+          </div>
 
-          <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of amigos">
-            <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
-            <img class="regalo" style="width: 15%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalo(usuario.id)">
-            <img class="mensaje" style="width: 15%;" src="http://localhost/programacionweb/recursos/mensaje.png" (click)="mensaje(usuario.id)">
+          <div *ngIf="!hayAmigos">
+            <h5 style="text-align: center; margin-top: 20px;"> No tenes amigos! </h5>
           </div>
         </div>
 

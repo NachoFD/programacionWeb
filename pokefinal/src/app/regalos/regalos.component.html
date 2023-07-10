@@ -1,1 +1,16 @@
-<p>regalos works!</p>
+<div class="fondo">
+    <div style="min-height: 100vh;">
+  
+        <h1 style="font-size: 70px; text-align: center; padding-top: 20px;"> <strong>REGALOS</strong> </h1>
+
+        <div *ngIf="!regalos" class="sinRegalos" >
+            <h3> NO HAS RECIBIDO REGALOS DE TUS AMIGOS! </h3>
+            <img src="https://e1.pxfuel.com/desktop-wallpaper/248/399/desktop-wallpaper-sad-pokemon-pokemon-sad.jpg">
+        </div>
+
+        <div *ngIf="regalos" class="conRegalos">
+            
+        </div>
+    
+    </div>
+</div>

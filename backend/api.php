@@ -290,7 +290,32 @@
           // Maneja el error en caso de que la consulta falle
           echo "Error en la consulta: " . $mysqli->error;
         }
-    }      
+    }
+    
+    function deleteAmigo(){
+        global $mysqli;
+    
+        $idUsuario = $_GET['id'];
+        $idAmigo = $_GET['id_amigo'];
+    
+        // Guarda la consulta en una variable
+        $consulta = "DELETE FROM amigos
+            WHERE (id_usuario = $idUsuario AND id_amigo = $idAmigo)
+            OR (id_usuario = $idAmigo AND id_amigo = $idUsuario);";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+    
+        if($resulConsulta)
+        {
+            // Imprime el JSON como respuesta
+            echo json_encode('Amigo eliminado correctamente!');
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
 
     function postMensaje(){
         

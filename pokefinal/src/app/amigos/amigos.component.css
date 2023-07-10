@@ -75,3 +75,11 @@
 .regalo:hover{
     border: 1px solid black;
 }
+
+.eliminar{
+    height: 10px;
+}
+
+.eliminar:hover{
+    height: 15px;
+}

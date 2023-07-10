@@ -9,9 +9,9 @@ import { ApiService } from '../api.service';
   styleUrls: ['./regalos.component.css']
 })
 export class RegalosComponent {
+  regalos = false;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private dataService: ApiService, private router: Router) {}
-
 
   ngOnInit() {
     // Verificar si el usuario está logeado al cargar el componente
@@ -19,4 +19,6 @@ export class RegalosComponent {
       this.router.navigate(['/login']); // Redireccionar al componente de inicio de sesión
     }
   }
+
+
 }
