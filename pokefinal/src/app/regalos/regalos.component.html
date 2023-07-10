@@ -3,13 +3,23 @@
   
         <h1 style="font-size: 70px; text-align: center; padding-top: 20px;"> <strong>REGALOS</strong> </h1>
 
-        <div *ngIf="!regalos" class="sinRegalos" >
-            <h3> NO HAS RECIBIDO REGALOS DE TUS AMIGOS! </h3>
-            <img src="https://e1.pxfuel.com/desktop-wallpaper/248/399/desktop-wallpaper-sad-pokemon-pokemon-sad.jpg">
+        <div *ngIf="!hayRegalos">
+            <div class="sinRegalos">
+                <h3> NO HAS RECIBIDO REGALOS DE TUS AMIGOS! </h3>
+                <img src="https://e1.pxfuel.com/desktop-wallpaper/248/399/desktop-wallpaper-sad-pokemon-pokemon-sad.jpg">
+            </div>
         </div>
 
-        <div *ngIf="regalos" class="conRegalos">
-            
+        <div *ngIf="hayRegalos">
+            <div *ngFor="let regalo of regalos" class="container">
+                <div class="conRegalos">
+                    <h3 style="width: 40%;">{{regalo.nombre_usuario}}</h3>
+                    <img style="width: 50%;" src="{{regalo.url}}">
+                    <p style="width: 15%; margin-left: 10px;">{{regalo.fecha}}</p>
+                    <button class="aceptar" (click)="aceptar(regalo.id)"> <strong>ACEPTAR</strong> </button>
+                    <button class="rechazar" (click)="rechazar(regalo.id)"> <strong>RECHAZAR</strong> </button>
+                </div>
+            </div>
         </div>
     
     </div>

@@ -38,7 +38,6 @@ INSERT INTO pokemon (id, nombre_pokemon, url_imagen) VALUES
 CREATE TABLE pokemon_datos (
   id_pokemon INT PRIMARY KEY,
   nombre VARCHAR(120),
-  url_imagen VARCHAR(355),
   dato varchar(355),
   altura varchar(20),
   categoria varchar(30),
@@ -85,6 +84,14 @@ CREATE TABLE registro (
   id INT PRIMARY KEY auto_increment,
   id_usuario int,
   id_pokemon int
+);
+
+CREATE TABLE regalos (
+  id INT PRIMARY KEY auto_increment,
+  id_usuario int,
+  id_destino int,
+  id_pokemon int,
+  fecha date
 );
 
 CREATE TABLE amigos (

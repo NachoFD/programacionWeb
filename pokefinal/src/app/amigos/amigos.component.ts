@@ -14,9 +14,11 @@ export class AmigosComponent {
   nombreUsuario: any;
   busqueda: any;
   amigos: any[] = [];
+  pokemones: any[] = [];
   hayAmigos = false;
+  regalo = false;
 
-  constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient, private snackBar: MatSnackBar) { }
+  constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient) { }
 
   ngOnInit() {
     // Verificar si el usuario está logeado al cargar el componente
@@ -27,17 +29,16 @@ export class AmigosComponent {
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
 
     this.buscarAmigos(idUsuario)
-
-    if(this.amigos != null){
-      this.hayAmigos = true;
-    }
   }
 
   buscarAmigos(idUsuario: any){
     this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=amigos&id=${idUsuario}`).subscribe((usuario: any) => {
       this.amigos = usuario;
+      
+      if(this.amigos[0] != null){
+        this.hayAmigos = true;
+      }
     });;
-
   }
 
   buscarUsuario(event: any) {
@@ -95,7 +96,33 @@ export class AmigosComponent {
     console.log("Mensaje: " , id)
   }
   
-  regalo(id: any){
+  regalar(id: any){
     console.log("Regalo: ", id)
+    const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
+
+    this.regalo = true;
+    this.buscarPokemonesRepetidos(idUsuario)
+  }
+
+  buscarPokemonesRepetidos(id: any){
+    console.log(id)
+
+    const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
+
+    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=pokemonesRepetidos&id=${idUsuario}`).subscribe((pokemon: any) => {
+      this.pokemones = pokemon;
+    });;
+  }
+
+  enviarRegalo(id: any){
+    console.log(id)
+
+    const confirmacion = window.confirm('¿Estás seguro de enviar este regalo?');
+    
+    if (confirmacion) {
+      const idUsuario = this.dataService.getId();
+      
+
+    }
   }
 }

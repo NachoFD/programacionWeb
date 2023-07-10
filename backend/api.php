@@ -317,10 +317,96 @@
         }
     }
 
-    function postMensaje(){
-        
+    function getRegalos(){
+        global $mysqli;
+    
+        $id_usuario = $_GET['id'];
+    
+        // Guarda la consulta en una variable
+        $consulta = "SELECT u.nombre_usuario, p.url_imagen, r.fecha, r.id FROM regalos r JOIN usuarios u ON r.id_usuario = u.id JOIN pokemon p ON r.id_pokemon = p.id WHERE r.id_destino = $id_usuario";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+    
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+    
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+    
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
     }
 
+    function postRegalo(){
+        global $mysqli;
+      
+        $data = json_decode(file_get_contents('php://input'), true); // Obtener los datos del cuerpo de la solicitud POST
+      
+        $id_usuario = $data['id'];
+        $id_amigo = $data['usuario'];
+      
+        // Guarda la consulta en una variable
+        $consulta = "INSERT INTO amigos (id_usuario, id_amigo) VALUES ($id_usuario, $id_amigo)";
+      
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+      
+        if ($resulConsulta) {
+          // Imprime el JSON como respuesta
+          echo json_encode('Agregado correctamente!');
+        } else {
+          // Maneja el error en caso de que la consulta falle
+          echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getPokemonesRepetidos(){
+        global $mysqli;
+
+        $id_usuario = $_GET['id'];
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT r.id_pokemon, p.url_imagen, COUNT(*) AS cantidad_repeticiones
+        FROM registro r
+        JOIN pokemon p ON r.id_pokemon = p.id
+        WHERE r.id_usuario = $id_usuario AND r.id_pokemon IN (
+            SELECT id_pokemon
+            FROM registro
+            WHERE id_usuario = $id_usuario
+            GROUP BY id_pokemon
+            HAVING COUNT(*) > 1
+        )
+        GROUP BY r.id_pokemon;";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
 
     function random(){
 

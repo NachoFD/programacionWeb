@@ -1,41 +1,62 @@
 <div class="fondo">
     <div style="min-height: 100vh;">
   
-      <h1 style="font-size: 70px; text-align: center; padding-top: 20px;"> <strong>AMIGOS</strong> </h1>
+      <div *ngIf="!regalo">
+        <h1 style="font-size: 70px; text-align: center; padding-top: 20px;"> <strong>AMIGOS</strong> </h1>
+        <div style="margin-top: 50px; margin-left: 20px; margin-right: 20px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
   
-      <div style="margin-top: 50px; margin-left: 20px; margin-right: 20px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-
-        <div id="lista" class="lista">
-          <h3 style="text-align: center;"> <strong>LISTA</strong> </h3>
-          <div *ngIf="hayAmigos">
-            <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of amigos">
-              <img class="eliminar" src="https://cdn-icons-png.flaticon.com/512/2/2104.png" (click)="eliminarAmigo(usuario.id)">
-              <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
-              <img class="regalo" style="width: 15%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalo(usuario.id)">
-              <img class="mensaje" style="width: 15%;" src="http://localhost/programacionweb/recursos/mensaje.png" (click)="mensaje(usuario.id)">
+          <div id="lista" class="lista">
+            <h3 style="text-align: center;"> <strong>LISTA</strong> </h3>
+            <div *ngIf="hayAmigos">
+              <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of amigos">
+                <img class="eliminar" src="https://cdn-icons-png.flaticon.com/512/2/2104.png" (click)="eliminarAmigo(usuario.id)">
+                <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
+                <img class="regalo" style="width: 15%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalar(usuario.id)">
+                <img class="mensaje" style="width: 15%;" src="http://localhost/programacionweb/recursos/mensaje.png" (click)="mensaje(usuario.id)">
+              </div>
+            </div>
+  
+            <div *ngIf="!hayAmigos">
+              <h5 style="text-align: center; margin-top: 20px;"> No tenes amigos! </h5>
             </div>
           </div>
-
-          <div *ngIf="!hayAmigos">
-            <h5 style="text-align: center; margin-top: 20px;"> No tenes amigos! </h5>
+  
+          <div id="buscar" class="buscar"  style="text-align: center;">
+            <h3 style="text-align: center;"> <strong>BUSCAR</strong> </h3>
+  
+            <form (submit)="buscarUsuario($event)" style="margin-bottom: 20px; margin-top: 20px;">
+              <input type="text" placeholder="Ingrese el usuario" [(ngModel)]="nombreUsuario" name="nombreUsuario" style="border-radius: 15px; padding: 10px; width: 200px;">
+            </form>
+  
+            <div *ngFor="let usuario of busqueda">
+              <h3 class="buscado">{{usuario.nombre_usuario}}</h3>
+              <button style="color: black; border-radius: 20px; background-color: aquamarine; padding: 10px; margin-top: 10px;" (click)="agregarAmigo(usuario.id)"> AGREGAR </button>
+            </div>
           </div>
         </div>
-
-        <div id="buscar" class="buscar"  style="text-align: center;">
-          <h3 style="text-align: center;"> <strong>BUSCAR</strong> </h3>
-
-          <form (submit)="buscarUsuario($event)" style="margin-bottom: 20px; margin-top: 20px;">
-            <input type="text" placeholder="Ingrese el usuario" [(ngModel)]="nombreUsuario" name="nombreUsuario" style="border-radius: 15px; padding: 10px; width: 200px;">
-          </form>
-
-          <div *ngFor="let usuario of busqueda">
-            <h3 class="buscado">{{usuario.nombre_usuario}}</h3>
-            <button style="color: black; border-radius: 20px; background-color: aquamarine; padding: 10px; margin-top: 10px;" (click)="agregarAmigo(usuario.id)"> AGREGAR </button>
-          </div>
-
-        </div>
-
       </div>
+
+      <div *ngIf="regalo">
+        <h2 style="font-size: 70px; text-align: center; padding-top: 20px;"> <strong>SELECCIONA UN REGALO</strong> </h2>
+
+        <div style="display: flex; justify-content: space-around; align-items: flex-start; margin-top: 50px;">
+
+          <div style="width: 50%; background-color: rgba(0, 0, 0, 0.5); padding: 25px; border-radius: 30px; margin-right: 10px;">
+            
+            <h2 style="font-size: 40px; text-align: center; margin-bottom: 20px; color: white;"> <strong>REPETIDOS</strong> </h2>
+            
+            <div id="coleccion" style=" display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+              <div *ngFor="let pokemon of pokemones">
+                <img [src]="pokemon.url_imagen" class="pokemon" (click)="enviarRegalo(pokemon.id_pokemon)">
+                <p>Cantidad: {{pokemon.cantidad_repeticiones}}</p>
+              </div>
+            </div>
+
+          </div>
+        
+        </div>
+      </div>
+
     </div>
 </div>  
 
