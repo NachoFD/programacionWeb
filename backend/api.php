@@ -295,4 +295,36 @@
     function postMensaje(){
         
     }
+
+
+    function random(){
+
+        return rand(1, 25);
+
+    }
+
+    function postGachapon(){
+
+        global $mysqli;
+
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $id_user = $data['id'];
+        
+        $id_pokemon = random();
+
+        $consulta = "INSERT INTO registro (id_usuario, id_pokemon) VALUES ($id_user, $id_pokemon)";
+        
+        $resulConsulta = $mysqli->query($consulta);
+
+        if ($resulConsulta) {
+          // Imprime el JSON como respuesta
+          echo json_encode('Agregado correctamente!');
+        } else {
+          // Maneja el error en caso de que la consulta falle
+          echo "Error en la consulta: " . $mysqli->error;
+        }
+
+
+    }
 ?>
