@@ -70,7 +70,7 @@ export class GatchaComponent {
           console.log(gachapon);
           console.log(this.tiempoActual);
   
-          if (gachapon >= this.tiempoActual) {
+          if (gachapon <= this.tiempoActual) {
             this.permiso = true;
           } else {
             this.permiso = false;

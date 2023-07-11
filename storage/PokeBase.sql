@@ -80,8 +80,8 @@ CREATE TABLE usuarios (
   administrador BOOLEAN
 );
 
-INSERT INTO usuarios (nombre_usuario, email, contraseña, administrador)
-VALUES ('admin', 'admin@admin.com', 'admin', true);
+INSERT INTO usuarios (id, nombre_usuario, email, contraseña, administrador)
+VALUES (1, 'admin', 'admin@admin.com', 'admin', true);
 
 CREATE TABLE registro (
   id INT PRIMARY KEY auto_increment,
