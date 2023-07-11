@@ -16,8 +16,8 @@
                     <h3 style="width: 40%;">{{regalo.nombre_usuario}}</h3>
                     <img style="width: 50%;" src="{{regalo.url_imagen}}">
                     <p style="margin-left: 10px;">{{regalo.fecha}}</p>
-                    <button class="aceptar" (click)="aceptar(regalo.id)"> <strong>ACEPTAR</strong> </button>
-                    <button class="rechazar" (click)="rechazar(regalo.id)"> <strong>RECHAZAR</strong> </button>
+                    <button class="aceptar" (click)="aceptar(regalo.id, regalo.id_pokemon)"> <strong>ACEPTAR</strong> </button>
+                    <button class="rechazar" (click)="rechazar(regalo.id, regalo.id_pokemon, regalo.id_usuario)"> <strong>RECHAZAR</strong> </button>
                 </div>
             </div>
         </div>

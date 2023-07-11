@@ -323,7 +323,7 @@
         $id_usuario = $_GET['id'];
     
         // Guarda la consulta en una variable
-        $consulta = "SELECT u.nombre_usuario, p.url_imagen, r.fecha, r.id FROM regalos r JOIN usuarios u ON r.id_usuario = u.id JOIN pokemon p ON r.id_pokemon = p.id WHERE r.id_destino = $id_usuario";
+        $consulta = "SELECT u.nombre_usuario, p.url_imagen, r.fecha, r.id, p.id as id_pokemon FROM regalos r JOIN usuarios u ON r.id_usuario = u.id JOIN pokemon p ON r.id_pokemon = p.id WHERE r.id_destino = $id_usuario";
     
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);
@@ -388,13 +388,13 @@
       
         $data = json_decode(file_get_contents('php://input'), true); // Obtener los datos del cuerpo de la solicitud POST
       
+        $id_regalo = $data['id_regalo'];
         $id_usuario = $data['id_usuario'];
-        $id_destino = $data['id_destino'];
         $id_pokemon = $data['id_pokemon'];
       
         // Guarda la consulta en una variable
-        $consulta = "INSERT INTO regalos (id_usuario, id_destino, id_pokemon, fecha)
-        VALUES ($id_usuario, $id_destino, $id_pokemon, CURDATE())";
+        $consulta = "INSERT INTO registro (id_usuario, id_pokemon)
+        VALUES ($id_usuario, $id_pokemon)";
       
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);
@@ -403,17 +403,44 @@
           // Imprime el JSON como respuesta
 
           // Elimina el pokemon del registro
-          $eliminar = "DELETE FROM registro
-          WHERE id = (
-              SELECT id
-              FROM registro
-              WHERE id_usuario = $id_usuario AND id_pokemon = $id_pokemon
-              LIMIT 1
-          );";
+          $eliminar = "DELETE FROM regalos
+          WHERE id = $id_regalo";
 
           $mysqli->query($eliminar);
 
-          echo json_encode('Se envio el regalo correctamente!');
+          echo json_encode('Se acepto el regalo correctamente!');
+        } else {
+          // Maneja el error en caso de que la consulta falle
+          echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function postRechazarRegalo(){
+        global $mysqli;
+      
+        $data = json_decode(file_get_contents('php://input'), true); // Obtener los datos del cuerpo de la solicitud POST
+      
+        $id_regalo = $data['id_regalo'];
+        $id_usuario = $data['id_usuario'];
+        $id_pokemon = $data['id_pokemon'];
+      
+        // Guarda la consulta en una variable
+        $consulta = "INSERT INTO registro (id_usuario, id_pokemon)
+        VALUES ($id_usuario, $id_pokemon)";
+      
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+      
+        if ($resulConsulta) {
+          // Imprime el JSON como respuesta
+
+          // Elimina el pokemon del registro
+          $eliminar = "DELETE FROM regalos
+          WHERE id = $id_regalo";
+
+          $mysqli->query($eliminar);
+
+          echo json_encode('Se acepto el regalo correctamente!');
         } else {
           // Maneja el error en caso de que la consulta falle
           echo "Error en la consulta: " . $mysqli->error;
