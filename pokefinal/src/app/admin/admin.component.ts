@@ -167,4 +167,12 @@ nuevoPokemon = {
         }
       );
   }
+
+  obtenerPokemones(){
+    const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
+
+    console.log("Se obtuvieron todos los pokemones!")
+
+    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=pokemonesAdmin&id=${idUsuario}`).subscribe()
+  }
 }
