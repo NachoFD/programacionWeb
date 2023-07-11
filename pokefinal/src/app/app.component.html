@@ -37,10 +37,16 @@
         onmouseenter="this.style = 'color: red'"
         onmouseleave="this.style = 'color: white'">REGALOS</a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="logoutbtn"  routerLink="comunidad" routerLinkActive="active" style="color: white;" 
+        onmouseenter="this.style = 'color: red'"
+        onmouseleave="this.style = 'color: white'">COMUNIDAD</a>
+      </li>
 
-      <!-- <li class="nav-item">
-        <button type="button" *ngIf="logoutbtn" class="btn btn-block" (click)="logout()" style="color: red;">CERRAR SESION</button>
-      </li> -->
+      <li class="nav-item">
+        <button type="button" *ngIf="admin" class="btn btn-block" style="color: red;">ADMIN</button>
+      </li>
 
     </ul>
   </div>

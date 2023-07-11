@@ -569,11 +569,11 @@
     }
 
     function getMensaje(){
-    global $mysqli;
+        global $mysqli;
 
-    $usuario = $_GET['usuario'];
+        // $usuario = $_GET['usuario'];
 
-     $sql = "SELECT * FROM mensajes ORDER BY fecha_envio DESC";
+        $sql = "SELECT * FROM mensajes ORDER BY fecha_envio DESC";
         $result = $mysqli->query($sql);
 
       if ($result->num_rows > 0) {
@@ -589,7 +589,7 @@
     }     
 
     function postMensaje(){
-    global $mysqli;
+        global $mysqli;
 
       $data = json_decode(file_get_contents('php://input'), true);
       $usuario = $mysqli->real_escape_string($data['usuario']);

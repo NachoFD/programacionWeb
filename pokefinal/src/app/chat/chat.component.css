@@ -1,0 +1,9 @@
+.sent-message {
+  text-align: right;
+  /* Agrega otros estilos para los mensajes enviados a la derecha */
+}
+
+.received-message {
+  text-align: left;
+  /* Agrega otros estilos para los mensajes recibidos a la izquierda */
+}

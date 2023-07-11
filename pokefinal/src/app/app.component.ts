@@ -13,15 +13,17 @@ export class AppComponent {
     }
     loginbtn:boolean;
     logoutbtn:boolean;
+    admin = false;
 
     constructor(private dataService: ApiService) {
     dataService.getLoggedInName.subscribe(name => this.changeName(name));
     
         if(this.dataService.isLoggedIn())
         {
-            console.log("loggedin");
             this.loginbtn=false;
             this.logoutbtn=true
+
+            // OBTENER SI EL USUARIO ES ADMIN
         }
         else
         {

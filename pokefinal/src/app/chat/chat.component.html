@@ -1,0 +1,13 @@
+<div>
+  <ul>
+    <li *ngFor="let message of messages" [ngClass]="{'sent-message': message.usuario === usuario, 'received-message': message.usuario !== usuario}">      
+      <span class="date">({{ message.fecha_envio }})</span><br>
+      <strong>{{ message.usuario }}:</strong> {{ message.contenido }}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <input [(ngModel)]="contenido" placeholder="Mensaje" required>
+  <button (click)="sendMessage()">Enviar</button>
+</div>
