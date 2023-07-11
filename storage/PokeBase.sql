@@ -3,7 +3,7 @@ CREATE DATABASE PokeBase;
 USE PokeBase;
 
 CREATE TABLE pokemon (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY auto_increment,
   nombre_pokemon VARCHAR(120),
   url_imagen VARCHAR(355)
 );
@@ -37,7 +37,6 @@ INSERT INTO pokemon (id, nombre_pokemon, url_imagen) VALUES
 
 CREATE TABLE pokemon_datos (
   id_pokemon INT PRIMARY KEY,
-  nombre VARCHAR(120),
   dato varchar(355),
   altura varchar(20),
   categoria varchar(30),

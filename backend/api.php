@@ -780,4 +780,71 @@
         }
     }
 
+    function postPokemon(){
+
+        global $mysqli;
+    
+        $data = json_decode(file_get_contents('php://input'), true);
+    
+        $nombre = $data['nombre'];
+        $url = $data['url'];
+
+        $dato = $data['dato'];
+        $altura = $data['altura'];
+        $categoria = $data['categoria'];
+        $peso = $data['peso'];
+        $habilidad = $data['habilidad'];
+        $tipo = $data['tipo'];
+        
+        $pokemon = "INSERT INTO pokemon (nombre_pokemon, url_imagen) VALUES ('$nombre', '$url');";
+        $resulPokemon = $mysqli->query($pokemon);
+
+        $id = getIdPokemon($nombre);
+
+        if($resulPokemon){
+
+            $consulta = "INSERT INTO pokemon_datos (id_pokemon, dato, altura, categoria, peso, habilidad, tipo) VALUES ($id, '$dato', '$altura', '$categoria', '$peso', '$habilidad', '$tipo');";
+        
+            $resulConsulta = $mysqli->query($consulta);
+        
+            if ($resulConsulta) {
+                
+                echo json_encode("Pokemon posteado!");
+
+            } else {
+                // Manejar el error en caso de que la consulta falle
+                echo "Error en la consulta:  " . $mysqli->error;
+            }
+
+        } else {
+            // Manejar el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getIdPokemon($nombre){
+        global $mysqli;
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT id FROM pokemon WHERE nombre_pokemon = '$nombre'";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+
+            return $rows[0]['id'];
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
 ?>

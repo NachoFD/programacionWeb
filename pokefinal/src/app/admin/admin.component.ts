@@ -19,6 +19,16 @@ usuarios: any[] = [];
 hayUsuarios: Boolean = false;
 
 pokemones: any[] = [];
+nuevoPokemon = {
+  nombre: '',
+  url: '',
+  dato: '',
+  altura: '',
+  categoria: '',
+  peso: '',
+  habilidad: '',
+  tipo: ''
+};
 
   constructor(private dataService: ApiService, private httpClient: HttpClient, private router: Router) {  
       
@@ -104,7 +114,7 @@ pokemones: any[] = [];
         .subscribe(
           data => {
             console.log(data); // Hacer algo con la respuesta si es necesario
-            location.reload(); // Recargar la página
+            this.getPokemones();
           },
           error => {
             console.error(error); // Manejar el error en caso de fallo en la solicitud
@@ -124,12 +134,37 @@ pokemones: any[] = [];
         .subscribe(
           data => {
             console.log(data); // Hacer algo con la respuesta si es necesario
-            location.reload(); // Recargar la página
+            this.getUsuarios()
           },
           error => {
             console.error(error); // Manejar el error en caso de fallo en la solicitud
           }
         );
     }
+  }
+
+  postPokemon() {
+    this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=pokemon', this.nuevoPokemon)
+      .subscribe(
+        data => {
+          console.log(data); // Hacer algo con la respuesta si es necesario
+          // Limpiar los valores del formulario
+          this.nuevoPokemon = {
+            nombre: '',
+            url: '',
+            dato: '',
+            altura: '',
+            categoria: '',
+            peso: '',
+            habilidad: '',
+            tipo: ''
+          };
+          // Actualizar la lista de pokémones
+          this.getPokemones();
+        },
+        error => {
+          console.error(error); // Manejar el error en caso de fallo en la solicitud
+        }
+      );
   }
 }

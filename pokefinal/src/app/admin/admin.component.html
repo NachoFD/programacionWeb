@@ -21,44 +21,58 @@
     </div>
 
     <div *ngIf="pantallaUsuario">
-
         <h2 style="text-align: center; padding: 30px; font-size: 50px;"> <strong>USUARIOS</strong> </h2>
-        
         <div id="lista" class="lista">
             <h2 style="text-align: center;"> <strong>ELIMINAR</strong> </h2>
-
-            <div *ngIf="hayUsuarios">
-              <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of usuarios">
-                
-                <img class="eliminar" src="https://cdn-icons-png.flaticon.com/512/2/2104.png" (click)="eliminarUsuario(usuario.id)">
-                <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
-
-              </div>
+            <div *ngIf="hayUsuarios" class="usuarios-container">
+                <div class="usuario" *ngFor="let usuario of usuarios">
+                    <img style="margin: 5px;" class="eliminar" src="https://cdn-icons-png.flaticon.com/512/2/2104.png" (click)="eliminarUsuario(usuario.id)">
+                    <h3>{{usuario.nombre_usuario}}</h3>
+                </div>
             </div>
-  
             <div *ngIf="!hayUsuarios">
-              <h5 style="text-align: center; margin-top: 20px;"> No hay usuarios! </h5>
+                <h5 style="text-align: center; margin-top: 20px;"> No hay usuarios! </h5>
             </div>
         </div>
-
         <div style="text-align: center; margin-top: 50px;">
             <button (click)="setPantalla(3)" style="border-radius: 20px; padding: 10px;">VOLVER</button>
         </div>
-
     </div>
+    
 
     <div *ngIf="pantallaPokemon">
 
-        <div style="display: flex; justify-content: space-around; align-items: flex-start; padding: 30px;">
-
-            <div style="width: 50%; background-color: rgba(0, 0, 0, 0.5); padding: 25px; border-radius: 30px; margin-left: 10px;">
-              <h2 style="font-size: 40px; text-align: center; margin-bottom: 20px; color: white;"> <strong>POKEMONES</strong> </h2>
-              <div style=" display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-                <img *ngFor="let pokemon of pokemones" [src]="pokemon.url_imagen" class="pokemon" (click)="eliminarPokemon(pokemon.id)">
-              </div>
-            </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
             
+            <div style="padding: 30px;">
+    
+                <div style="width: 100%; background-color: rgba(0, 0, 0, 0.5); padding: 25px; border-radius: 30px; border: 5px solid black;">
+                  <h2 style="font-size: 40px; text-align: center; margin-bottom: 20px; color: white;"> <strong>POKEMONES</strong> </h2>
+                  <div style=" display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+                    <img *ngFor="let pokemon of pokemones" [src]="pokemon.url_imagen" class="pokemon" (click)="eliminarPokemon(pokemon.id)">
+                  </div>
+                </div>
+            </div>
+    
+            <!-- Formulario para ingresar los datos del nuevo Pokémon -->
+            <div class="formulario">
+                <h4 style="text-align: center;"><strong>AGREGAR POKEMON</strong></h4>
+                <form (ngSubmit)="postPokemon()">
+                    <div class="form-group">
+                        <input class="form-control input-sm" type="text" name="nombre" placeholder="Nombre" [(ngModel)]="nuevoPokemon.nombre" required>
+                        <input class="form-control input-sm" type="text" name="url" placeholder="Url imagen" [(ngModel)]="nuevoPokemon.url" required>
+                        <input class="form-control input-sm" type="text" name="dato" placeholder="Dato" [(ngModel)]="nuevoPokemon.dato" required>
+                        <input class="form-control input-sm" type="text" name="altura" placeholder="Altura" [(ngModel)]="nuevoPokemon.altura" required>
+                        <input class="form-control input-sm" type="text" name="categoria" placeholder="Categoria" [(ngModel)]="nuevoPokemon.categoria" required>
+                        <input class="form-control input-sm" type="text" name="peso" placeholder="Peso" [(ngModel)]="nuevoPokemon.peso" required>
+                        <input class="form-control input-sm" type="text" name="habilidad" placeholder="Habilidad" [(ngModel)]="nuevoPokemon.habilidad" required>
+                        <input class="form-control input-sm" type="text" name="tipo" placeholder="Tipo" [(ngModel)]="nuevoPokemon.tipo" required>
+                        <button style="padding: 10px; border-radius: 20px; border: 3px solid; margin-top: 20px;" type="submit">Agregar</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
 
         <div style="text-align: center; margin-top: 50px;">
             <button (click)="setPantalla(3)" style="border-radius: 20px; padding: 10px;">VOLVER</button>
