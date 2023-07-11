@@ -323,7 +323,7 @@
         $id_usuario = $_GET['id'];
     
         // Guarda la consulta en una variable
-        $consulta = "SELECT u.nombre_usuario, p.url_imagen, r.fecha, r.id, p.id as id_pokemon FROM regalos r JOIN usuarios u ON r.id_usuario = u.id JOIN pokemon p ON r.id_pokemon = p.id WHERE r.id_destino = $id_usuario";
+        $consulta = "SELECT u.id as id_usuario, u.nombre_usuario, p.url_imagen, r.fecha, r.id, p.id as id_pokemon FROM regalos r JOIN usuarios u ON r.id_usuario = u.id JOIN pokemon p ON r.id_pokemon = p.id WHERE r.id_destino = $id_usuario";
     
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);

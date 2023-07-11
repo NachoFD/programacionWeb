@@ -24,10 +24,12 @@
                   <div style="text-align: center; margin-top: 20px;">
                     <button type="submit" class="btn btn-success">Registrarse</button>
                   </div>
-
                 </form>
+              </div>
 
-            </div>
+              <div id="mensaje" *ngIf="showErrorMessage" class="alert alert-danger" style="margin-top: 20px;">
+                Por favor, completa correctamente todos los campos del formulario.
+              </div>
         </div>
       </div>
     </div>

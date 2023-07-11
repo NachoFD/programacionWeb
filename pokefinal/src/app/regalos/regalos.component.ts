@@ -76,7 +76,7 @@ export class RegalosComponent {
         id_pokemon: id_pokemon
       };
     
-      this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=regalo', body)
+      this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=rechazarRegalo', body)
       .subscribe(
         data => {
           console.log(data); // Hacer algo con la respuesta si es necesario
