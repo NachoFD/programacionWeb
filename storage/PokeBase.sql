@@ -107,8 +107,7 @@ CREATE TABLE gachapon (
 
 CREATE TABLE mensajes (
 	id INT PRIMARY KEY auto_increment,	
-  usuario varchar(250),
+  	usuario varchar(250),
 	contenido varchar(250),
 	fecha_envio datetime,
-	destinatario varchar(45)
 )
