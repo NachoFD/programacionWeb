@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class GatchaComponent {
+  pokemon: any = null;
+  hayPokemon:Boolean = false;
 
   constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient) { }
 
@@ -33,7 +35,8 @@ export class GatchaComponent {
     this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=Gachapon', body)
     .subscribe(
       data => {
-        console.log(data); // Hacer algo con la respuesta si es necesario
+        this.pokemon = data.url_imagen; // Hacer algo con la respuesta si es necesario
+        this.hayPokemon = true;
       },
       error => {
         console.error(error); // Manejar el error en caso de fallo en la solicitud
@@ -42,6 +45,8 @@ export class GatchaComponent {
   }
 
   // DESPUES DE OBTENER AL POKEMON SE MOSTRAR AL POKEMON JUNTO CON UN BOTON PARA IR AL INICIO
-  // this.router.navigate(['/inicio']);
+  volver(){
+    this.router.navigate(['/inicio']);
+  }
   
 }

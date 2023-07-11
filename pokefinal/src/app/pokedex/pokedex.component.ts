@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class PokedexComponent {
   coleccion: any[] = [];
   pokemones: any[] = [];
+  completado: Boolean = false;
 
   constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient, private snackBar: MatSnackBar) { }
 
@@ -30,6 +31,10 @@ export class PokedexComponent {
 
     this.getPokemones(idUsuario).subscribe((pokemon: any) => {
       this.pokemones = pokemon;
+    
+      if(this.pokemones[0] == null){
+        this.completado = true;
+      }
     });
   }
 
@@ -48,8 +53,16 @@ export class PokedexComponent {
     this.router.navigate(['/pokemon', id]); // Redireccionar al componente de pokemon para mostrar el pokemon junto con sus datos
   }
 
-  public mostrarMensaje(){
+  mostrarMensaje(){
     this.snackBar.open('El Pokemon aun no ha sido desbloqueado!', 'Cerrar', {
+      duration: 4000, // Duración en milisegundos
+      horizontalPosition: 'center', // Posición horizontal del mensaje
+      verticalPosition: 'top' // Posición vertical del mensaje
+    });
+  }
+
+  mostrarMensajeVictoria(){
+    this.snackBar.open('TERMINASTE LA POKEDEX! Felicitaciones!', 'Gracias', {
       duration: 4000, // Duración en milisegundos
       horizontalPosition: 'center', // Posición horizontal del mensaje
       verticalPosition: 'top' // Posición vertical del mensaje

@@ -111,7 +111,7 @@
         $id_usuario = $_GET['id'];
 
         // Guarda la consulta en una variable
-        $consulta = "SELECT p.* FROM pokemon p JOIN registro r ON p.id = r.id_pokemon WHERE r.id_usuario = $id_usuario;";
+        $consulta = "SELECT p.* FROM pokemon p JOIN registro r ON p.id = r.id_pokemon WHERE r.id_usuario = $id_usuario GROUP BY p.id";
 
         // Envia la consulta y guarda el resultado
         $resulConsulta = $mysqli->query($consulta);
@@ -492,28 +492,38 @@
 
     }
 
-    function postGachapon(){
-
+    function postGachapon() {
         global $mysqli;
-
+    
         $data = json_decode(file_get_contents('php://input'), true);
-
+    
         $id_user = $data['id'];
-        
+    
         $id_pokemon = random();
-
+    
         $consulta = "INSERT INTO registro (id_usuario, id_pokemon) VALUES ($id_user, $id_pokemon)";
-        
+    
         $resulConsulta = $mysqli->query($consulta);
-
+    
         if ($resulConsulta) {
-          // Imprime el JSON como respuesta
-          echo json_encode($id_pokemon);
+            // Consulta adicional para obtener la URL de la imagen del Pokémon
+            $getUrl = "SELECT url_imagen FROM pokemon WHERE id = $id_pokemon";
+            $url_result = $mysqli->query($getUrl);
+    
+            if ($url_result) {
+                $url_row = $url_result->fetch_assoc();
+                $url_imagen = $url_row['url_imagen'];
+                // Crear un array asociativo con la URL de la imagen
+                $response = array('url_imagen' => $url_imagen);
+                // Imprimir el JSON con la respuesta
+                echo json_encode($response);
+            } else {
+                // Manejar el error en caso de que la consulta falle
+                echo "Error en la consulta para obtener la URL de la imagen: " . $mysqli->error;
+            }
         } else {
-          // Maneja el error en caso de que la consulta falle
-          echo "Error en la consulta: " . $mysqli->error;
+            // Manejar el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
         }
-
-
-    }
+    }    
 ?>
