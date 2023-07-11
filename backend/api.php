@@ -486,10 +486,13 @@
         }
     }
 
-    function random(){
+    function deleteGachapon($id){
+        global $mysqli;
 
-        return rand(1, 25);
-
+        $consulta = "DELETE FROM gachapon WHERE id_usuario = $id";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
     }
 
     function postGachapon() {
@@ -498,32 +501,70 @@
         $data = json_decode(file_get_contents('php://input'), true);
     
         $id_user = $data['id'];
+        $tiempo = date('Y-m-d');
+
+        deleteGachapon($id_user);
+
+        $gachapon = "INSERT INTO gachapon (id_usuario, tiempo) VALUES ($id_user, '$tiempo')";
+        $resulGachapon = $mysqli->query($gachapon);
+
+        if($resulGachapon){
+            $id_pokemon = rand(1, 25);
+        
+            $consulta = "INSERT INTO registro (id_usuario, id_pokemon) VALUES ($id_user, $id_pokemon)";
+        
+            $resulConsulta = $mysqli->query($consulta);
+        
+            if ($resulConsulta) {
+                // Consulta adicional para obtener la URL de la imagen del Pokémon
+                $getUrl = "SELECT url_imagen FROM pokemon WHERE id = $id_pokemon";
+                $url_result = $mysqli->query($getUrl);
+        
+                if ($url_result) {
+                    $url_row = $url_result->fetch_assoc();
+                    $url_imagen = $url_row['url_imagen'];
     
-        $id_pokemon = random();
+                    $response = array('url_imagen' => $url_imagen);
     
-        $consulta = "INSERT INTO registro (id_usuario, id_pokemon) VALUES ($id_user, $id_pokemon)";
-    
-        $resulConsulta = $mysqli->query($consulta);
-    
-        if ($resulConsulta) {
-            // Consulta adicional para obtener la URL de la imagen del Pokémon
-            $getUrl = "SELECT url_imagen FROM pokemon WHERE id = $id_pokemon";
-            $url_result = $mysqli->query($getUrl);
-    
-            if ($url_result) {
-                $url_row = $url_result->fetch_assoc();
-                $url_imagen = $url_row['url_imagen'];
-                // Crear un array asociativo con la URL de la imagen
-                $response = array('url_imagen' => $url_imagen);
-                // Imprimir el JSON con la respuesta
-                echo json_encode($response);
+                    echo json_encode($response);
+                } else {
+                    // Manejar el error en caso de que la consulta falle
+                    echo "Error en la consulta para obtener la URL de la imagen: " . $mysqli->error;
+                }
             } else {
                 // Manejar el error en caso de que la consulta falle
-                echo "Error en la consulta para obtener la URL de la imagen: " . $mysqli->error;
+                echo "Error en la consulta: " . $mysqli->error;
             }
+        }
+    
+    }  
+    
+    function getTiempo(){
+        global $mysqli;
+    
+        $id_usuario = $_GET['id'];
+    
+        // Guarda la consulta en una variable
+        $consulta = "SELECT * FROM gachapon WHERE id_usuario = $id_usuario";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+    
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+    
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+    
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+    
         } else {
-            // Manejar el error en caso de que la consulta falle
+            // Maneja el error en caso de que la consulta falle
             echo "Error en la consulta: " . $mysqli->error;
         }
-    }    
+    }
 ?>

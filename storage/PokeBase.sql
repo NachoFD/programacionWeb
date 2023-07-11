@@ -102,6 +102,6 @@ CREATE TABLE amigos (
 
 CREATE TABLE gachapon (
   id_usuario int,
-  tiempo time
+  tiempo date
 );
 
