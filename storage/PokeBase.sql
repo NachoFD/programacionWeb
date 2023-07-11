@@ -77,7 +77,8 @@ CREATE TABLE usuarios (
   id INT PRIMARY KEY auto_increment,
   nombre_usuario VARCHAR(30),
   email VARCHAR(250),
-  contraseña VARCHAR(30)
+  contraseña VARCHAR(30),
+  administrador BOOLEAN
 );
 
 CREATE TABLE registro (
@@ -107,7 +108,7 @@ CREATE TABLE gachapon (
 
 CREATE TABLE mensajes (
 	id INT PRIMARY KEY auto_increment,	
-  	usuario varchar(250),
+  usuario varchar(250),
 	contenido varchar(250),
-	fecha_envio datetime,
+	fecha_envio datetime
 )

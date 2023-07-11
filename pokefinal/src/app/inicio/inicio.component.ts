@@ -16,6 +16,7 @@ export class InicioComponent {
     if (!this.dataService.isLoggedIn()) {
       this.router.navigate(['/login']); // Redireccionar al componente de inicio de sesión
     }
+    
   }
 
 }

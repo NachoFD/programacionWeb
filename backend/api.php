@@ -605,4 +605,179 @@
 
     }
 
+    function getAdmin(){
+        global $mysqli;
+    
+        $id_usuario = $_GET['id'];
+    
+        // Guarda la consulta en una variable
+        $consulta = "SELECT * FROM usuarios WHERE id = $id_usuario";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+    
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+    
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+    
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getAllPokemones(){
+        global $mysqli;
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT * FROM pokemon";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function deletePokemon(){
+        global $mysqli;
+    
+        $idPokemon = $_GET['id'];
+    
+        // Guarda la consulta en una variable
+        $consulta1 = "DELETE FROM pokemon WHERE id = $idPokemon";
+        $consulta2 = "DELETE FROM pokemon_datos WHERE id_pokemon = $idPokemon";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta1 = $mysqli->query($consulta1);
+        $resulConsulta2 = $mysqli->query($consulta2);
+    
+        if($resulConsulta1)
+        {
+            if($resulConsulta2){
+                // Imprime el JSON como respuesta
+                echo json_encode('Pokemon eliminado correctamente!');
+            }
+            else
+            {
+                // Maneja el error en caso de que la consulta falle
+                echo "Error en la consulta: " . $mysqli->error;
+            }
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function getAllUsuarios(){
+        global $mysqli;
+
+        $id = $_GET['id'];
+
+        // Guarda la consulta en una variable
+        $consulta = "SELECT * FROM usuarios WHERE id != $id";
+
+        // Envia la consulta y guarda el resultado
+        $resulConsulta = $mysqli->query($consulta);
+
+        if($resulConsulta)
+        {
+            // Guarda el resultado en Rows
+            $rows = array();
+
+            while ($rowConsulta = $resulConsulta->fetch_assoc()) {
+                $rows[] = $rowConsulta;
+            }
+
+            // Imprime el JSON como respuesta
+            echo json_encode($rows);
+
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta: " . $mysqli->error;
+        }
+    }
+
+    function deleteUsuario(){
+        global $mysqli;
+    
+        $idUsuario = $_GET['id'];
+    
+        // Guarda la consulta en una variable
+        $consulta1 = "DELETE FROM usuarios WHERE id = $idUsuario";
+        $consulta2 = "DELETE FROM registro WHERE id_usuario = $idUsuario";
+        $consulta3 = "DELETE FROM regalos WHERE id_usuario = $idUsuario";
+        $consulta4 = "DELETE FROM amigos WHERE id_amigo = $idUsuario OR id_usuario = $idUsuario";
+        $consulta5 = "DELETE FROM gachapon WHERE id_usuario = $idUsuario";
+    
+        // Envia la consulta y guarda el resultado
+        $resulConsulta1 = $mysqli->query($consulta1);
+        $resulConsulta2 = $mysqli->query($consulta2);
+        $resulConsulta3 = $mysqli->query($consulta3);
+        $resulConsulta4 = $mysqli->query($consulta4);
+        $resulConsulta5 = $mysqli->query($consulta5);
+    
+        if($resulConsulta1)
+        {
+            if($resulConsulta2){
+                
+                if($resulConsulta3){
+
+                    if($resulConsulta4){
+
+                        if($resulConsulta5){
+
+                            echo json_encode('Usuario eliminado correctamente!');
+
+                        }
+                        else {
+                            // Maneja el error en caso de que la consulta falle
+                            echo "Error en la consulta 5: " . $mysqli->error;
+                        }
+                    }
+                    else {
+                        // Maneja el error en caso de que la consulta falle
+                        echo "Error en la consulta 4: " . $mysqli->error;
+                    }
+                }
+                else {
+                    // Maneja el error en caso de que la consulta falle
+                    echo "Error en la consulta 3: " . $mysqli->error;
+                }
+            }
+            else
+            {
+                // Maneja el error en caso de que la consulta falle
+                echo "Error en la consulta 2: " . $mysqli->error;
+            }
+    
+        } else {
+            // Maneja el error en caso de que la consulta falle
+            echo "Error en la consulta 1: " . $mysqli->error;
+        }
+    }
+
 ?>

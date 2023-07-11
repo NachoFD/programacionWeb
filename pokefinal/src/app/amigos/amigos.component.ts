@@ -18,6 +18,7 @@ export class AmigosComponent {
   hayAmigos = false;
   regalo = false;
   id_amigo: any;
+  noEncontro: boolean = false;
 
   constructor(private dataService: ApiService, private router: Router, private httpClient : HttpClient, private snackBar: MatSnackBar) { }
 
@@ -49,7 +50,16 @@ export class AmigosComponent {
 
     this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=usuario&usuario=${this.nombreUsuario}&id=${idUsuario}`).subscribe((usuario: any) => {
       this.busqueda = usuario;
+      
+      if(this.busqueda[0] == null){
+        this.noEncontro = true;
+      }
+      else
+      {
+        this.noEncontro = false;
+      }
     });;
+
   }  
 
   agregarAmigo(id_amigo: any) {
@@ -92,10 +102,6 @@ export class AmigosComponent {
         );
     }
   }  
-  
-  mensaje(id: any){
-    console.log("Mensaje: " , id)
-  }
   
   regalar(id_amigo: any){
     console.log("Amigo: ", id_amigo)

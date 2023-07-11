@@ -11,8 +11,7 @@
               <div style="display: flex; align-items: center; margin-top: 20px; width: 350px; height: fit-content;" *ngFor="let usuario of amigos">
                 <img class="eliminar" src="https://cdn-icons-png.flaticon.com/512/2/2104.png" (click)="eliminarAmigo(usuario.id)">
                 <h3 class="buscado" style="width: 70%;">{{usuario.nombre_usuario}}</h3>
-                <img class="regalo" style="width: 15%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalar(usuario.id)">
-                <img class="mensaje" style="width: 15%;" src="http://localhost/programacionweb/recursos/mensaje.png" (click)="mensaje(usuario.id)">
+                <img class="regalo" style="width: 12%;" src="https://img.freepik.com/iconos-gratis/caja-regalo_318-298640.jpg" (click)="regalar(usuario.id)">
               </div>
             </div>
   
@@ -32,6 +31,11 @@
               <h3 class="buscado">{{usuario.nombre_usuario}}</h3>
               <button style="color: black; border-radius: 20px; background-color: aquamarine; padding: 10px; margin-top: 10px;" (click)="agregarAmigo(usuario.id)"> AGREGAR </button>
             </div>
+
+            <div *ngIf="noEncontro">
+              <h5 style="text-align: center; margin-top: 20px;"> No se encontro! </h5>
+            </div>
+            
           </div>
         </div>
       </div>

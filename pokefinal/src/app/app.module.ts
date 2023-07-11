@@ -20,6 +20,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegalosComponent } from './regalos/regalos.component';
 import { ChatComponent } from './chat/chat.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ChatComponent } from './chat/chat.component';
     PerfilComponent,
     PokemonComponent,
     RegalosComponent,
-    ChatComponent
+    ChatComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

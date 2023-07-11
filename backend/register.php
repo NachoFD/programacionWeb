@@ -8,7 +8,7 @@
         $name = trim($request->name);
         $pwd = mysqli_real_escape_string($mysqli, trim($request->pwd));
         $email = mysqli_real_escape_string($mysqli, trim($request->email));
-        $sql = "INSERT INTO usuarios(nombre_usuario, contraseña, email) VALUES ('$name','$pwd','$email')";
+        $sql = "INSERT INTO usuarios(nombre_usuario, contraseña, email, administrador) VALUES ('$name','$pwd','$email', false)";
         if ($mysqli->query($sql) === TRUE) {
             $authdata = [
             'nombre' => $name,
