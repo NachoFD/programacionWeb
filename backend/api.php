@@ -567,4 +567,42 @@
             echo "Error en la consulta: " . $mysqli->error;
         }
     }
+
+    function getMensaje(){
+    global $mysqli;
+
+    $usuario = $_GET['usuario'];
+
+     $sql = "SELECT * FROM mensajes ORDER BY fecha_envio DESC";
+        $result = $mysqli->query($sql);
+
+      if ($result->num_rows > 0) {
+        $messages = array();
+        while ($row = $result->fetch_assoc()) {
+          $messages[] = $row;
+
+        }
+        echo json_encode($messages);
+      } else {
+        echo json_encode(array());
+      }
+    }     
+
+    function postMensaje(){
+    global $mysqli;
+
+      $data = json_decode(file_get_contents('php://input'), true);
+      $usuario = $mysqli->real_escape_string($data['usuario']);
+      $contenido = $mysqli->real_escape_string($data['contenido']);
+
+      $sql = "INSERT INTO mensajes (usuario, contenido, fecha_envio) VALUES ('$usuario', '$contenido', NOW())";
+      if ($mysqli->query($sql) === true) {
+        echo json_encode(array('success' => true, 'message' => 'Mensaje enviado correctamente'));
+
+      } else {
+        echo json_encode(array('success' => false, 'message' => 'Error al enviar el mensaje'));
+      }
+
+    }
+
 ?>
