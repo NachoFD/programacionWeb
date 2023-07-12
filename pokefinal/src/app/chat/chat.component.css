@@ -1,9 +1,14 @@
-.sent-message {
-  text-align: right;
-  /* Agrega otros estilos para los mensajes enviados a la derecha */
+.fondo{
+  background-color: rgb(149, 232, 204);
+  background-size: cover;
+  min-height: 100vh;
 }
 
-.received-message {
-  text-align: left;
-  /* Agrega otros estilos para los mensajes recibidos a la izquierda */
+.message-container {
+  background-color: aliceblue;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 20px;
+  max-height: 700px; /* Altura máxima deseada */
+  overflow-y: auto; /* Mostrar barra de desplazamiento vertical cuando sea necesario */
 }

@@ -1,13 +1,16 @@
-<div>
-  <ul>
-    <li *ngFor="let message of messages" [ngClass]="{'sent-message': message.usuario === usuario, 'received-message': message.usuario !== usuario}">      
-      <span class="date">({{ message.fecha_envio }})</span><br>
-      <strong>{{ message.usuario }}:</strong> {{ message.contenido }}
-    </li>
-  </ul>
-</div>
+<div class="fondo">
+  <h2 style="text-align: center; font-size: 50px; padding-top: 30px;"> <strong>COMUNIDAD</strong></h2>
 
-<div>
-  <input [(ngModel)]="contenido" placeholder="Mensaje" required>
-  <button (click)="sendMessage()">Enviar</button>
+  <div class="message-container" #messageContainer>
+    <div *ngFor="let message of messages">
+      <p>
+        ({{ message.fecha_envio }}) <strong>{{ message.usuario }}:</strong> {{ message.contenido }}
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align: center; padding-left: 25px; padding-right: 25px;">
+    <input [(ngModel)]="contenido" placeholder="Mensaje" style="width: 80%; text-align: center; padding-top: 15px; padding-bottom: 15px; border-radius: 20px;">
+    <button (click)="sendMessage()" style="padding: 15px; border-radius: 20px; width: 10%"> <strong>Enviar</strong> </button>
+  </div>
 </div>

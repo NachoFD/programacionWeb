@@ -67,10 +67,7 @@ export class GatchaComponent {
         if (usuario.length > 0 && usuario[0].tiempo) {
           const gachapon = new Date(usuario[0].tiempo);
   
-          console.log(gachapon);
-          console.log(this.tiempoActual);
-  
-          if (gachapon <= this.tiempoActual) {
+          if (gachapon >= this.tiempoActual) {
             this.permiso = true;
           } else {
             this.permiso = false;
