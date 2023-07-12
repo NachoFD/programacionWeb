@@ -27,7 +27,7 @@ export class RegalosComponent {
   }
 
   buscarRegalos(id: any){
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=regalos&id=${id}`).subscribe((regalo: any) => {
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=regalos&id=${id}`).subscribe((regalo: any) => {
       this.regalos = regalo;
       
       if(this.regalos[0] != null){
@@ -47,7 +47,7 @@ export class RegalosComponent {
       id_pokemon: id_pokemon
     };
     
-    this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=aceptarRegalo', body)
+    this.httpClient.post<any>('https://pokefinal.000webhostapp.com/backend/api.php?accion=aceptarRegalo', body)
       .subscribe(
         data => {
           console.log(data); // Hacer algo con la respuesta si es necesario
@@ -76,7 +76,7 @@ export class RegalosComponent {
         id_pokemon: id_pokemon
       };
     
-      this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=rechazarRegalo', body)
+      this.httpClient.post<any>('https://pokefinal.000webhostapp.com/backend/api.php?accion=rechazarRegalo', body)
       .subscribe(
         data => {
           console.log(data); // Hacer algo con la respuesta si es necesario

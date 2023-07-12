@@ -46,7 +46,7 @@ export class AppComponent {
     }
 
     getAdmin(id: any){
-        this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=admin&id=${id}`).subscribe((usuario: any) => {
+        this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=admin&id=${id}`).subscribe((usuario: any) => {
           console.log(usuario)
           if(usuario != null){
             if(usuario[0].administrador == true){

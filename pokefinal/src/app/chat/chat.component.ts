@@ -37,12 +37,12 @@ export class ChatComponent implements OnInit {
   }
 
   public getPerfil(id: any) {
-    return this.http.get(`http://localhost/programacionweb/backend/api.php?accion=perfil&id=${id}`);
+    return this.http.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=perfil&id=${id}`);
   }
 
   loadMessages() {
     this.http
-      .get<Message[]>('http://localhost/programacionweb/backend/api.php?accion=Mensaje')
+      .get<Message[]>('https://pokefinal.000webhostapp.com/backend/api.php?accion=Mensaje')
       .pipe(map((response) => response as Message[])) // Utiliza el operador map para transformar la respuesta en un array de Message
       .subscribe((messages) => {
         this.messages = messages.reverse();
@@ -67,7 +67,7 @@ export class ChatComponent implements OnInit {
     else
     {
       this.http
-        .post('http://localhost/programacionweb/backend/api.php?accion=Mensaje', message)
+        .post('https://pokefinal.000webhostapp.com/backend/api.php?accion=Mensaje', message)
         .subscribe((response) => {
           console.log(response);
           this.contenido = '';

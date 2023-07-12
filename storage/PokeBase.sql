@@ -1,14 +1,79 @@
-CREATE DATABASE PokeBase;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-07-2023 a las 03:38:40
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
-USE PokeBase;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE pokemon (
-  id INT PRIMARY KEY auto_increment,
-  nombre_pokemon VARCHAR(120),
-  url_imagen VARCHAR(355)
-);
 
-INSERT INTO pokemon (id, nombre_pokemon, url_imagen) VALUES
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `pokebase`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `amigos`
+--
+
+CREATE TABLE `amigos` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_amigo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gachapon`
+--
+
+CREATE TABLE `gachapon` (
+  `id_usuario` int(11) DEFAULT NULL,
+  `tiempo` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mensajes`
+--
+
+CREATE TABLE `mensajes` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(250) DEFAULT NULL,
+  `contenido` varchar(250) DEFAULT NULL,
+  `fecha_envio` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pokemon`
+--
+
+CREATE TABLE `pokemon` (
+  `id` int(11) NOT NULL,
+  `nombre_pokemon` varchar(120) DEFAULT NULL,
+  `url_imagen` varchar(355) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pokemon`
+--
+
+INSERT INTO `pokemon` (`id`, `nombre_pokemon`, `url_imagen`) VALUES
 (1, 'Bulbasaur', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png'),
 (2, 'Charmander', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png'),
 (3, 'Squirtle', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png'),
@@ -35,17 +100,27 @@ INSERT INTO pokemon (id, nombre_pokemon, url_imagen) VALUES
 (24, 'Mankey', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/056.png'),
 (25, 'Growlithe', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/058.png');
 
-CREATE TABLE pokemon_datos (
-  id_pokemon INT PRIMARY KEY,
-  dato varchar(355),
-  altura varchar(20),
-  categoria varchar(30),
-  peso varchar(20),
-  habilidad varchar(60),
-  tipo varchar(60)
-);
+-- --------------------------------------------------------
 
-INSERT INTO pokemon_datos (id_pokemon, dato, altura, categoria, peso, habilidad, tipo) VALUES
+--
+-- Estructura de tabla para la tabla `pokemon_datos`
+--
+
+CREATE TABLE `pokemon_datos` (
+  `id_pokemon` int(11) NOT NULL,
+  `dato` varchar(355) DEFAULT NULL,
+  `altura` varchar(20) DEFAULT NULL,
+  `categoria` varchar(30) DEFAULT NULL,
+  `peso` varchar(20) DEFAULT NULL,
+  `habilidad` varchar(60) DEFAULT NULL,
+  `tipo` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pokemon_datos`
+--
+
+INSERT INTO `pokemon_datos` (`id_pokemon`, `dato`, `altura`, `categoria`, `peso`, `habilidad`, `tipo`) VALUES
 (1, 'Este pokemon nacio con una semilla en el lomo, que brota con el paso del tiempo. Se alimenta de los nutrientes de su semilla.', '0.7m', 'Semilla', '6,9 kg', 'Espesura', 'Planta'),
 (2, 'Prefiere las cosas calientes. Dicen que cuando llueve le sale vapor de la punta de la cola. Si se le apagara, fallecería.', '0.6m', 'Lagartija', '8,5 kg', 'Mar Llamas', 'Fuego'),
 (3, 'Cuando retrae su largo cuello en el caparazón, dispara agua a una presión increíble.', '0,5m', 'Tortuguita', '9,0 kg', 'Torrente', 'Agua'),
@@ -72,45 +147,140 @@ INSERT INTO pokemon_datos (id_pokemon, dato, altura, categoria, peso, habilidad,
 (24, 'Vive en grupos en las copas de los árboles. Si pierde de vista a su manada, se siente solo y se enfada.', '0.5m', 'Mono Cerdo', '28,0 kg', 'Espiritu Vital', 'Lucha'),
 (25, 'De naturaleza valiente y honrada, se enfrenta sin miedo a enemigos más grandes y fuertes.', '0.7m', 'Perrito', '19,0 kg', 'Intimidacion', 'Fuego');
 
-CREATE TABLE usuarios (
-  id INT PRIMARY KEY auto_increment,
-  nombre_usuario VARCHAR(30),
-  email VARCHAR(250),
-  contraseña VARCHAR(30),
-  administrador BOOLEAN
-);
+-- --------------------------------------------------------
 
-INSERT INTO usuarios (id, nombre_usuario, email, contraseña, administrador)
-VALUES (1, 'admin', 'admin@admin.com', 'admin', true);
+--
+-- Estructura de tabla para la tabla `regalos`
+--
 
-CREATE TABLE registro (
-  id INT PRIMARY KEY auto_increment,
-  id_usuario int,
-  id_pokemon int
-);
+CREATE TABLE `regalos` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_destino` int(11) DEFAULT NULL,
+  `id_pokemon` int(11) DEFAULT NULL,
+  `fecha` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE regalos (
-  id INT PRIMARY KEY auto_increment,
-  id_usuario int,
-  id_destino int,
-  id_pokemon int,
-  fecha VARCHAR(200)
-);
+-- --------------------------------------------------------
 
-CREATE TABLE amigos (
-  id INT PRIMARY KEY auto_increment,
-  id_usuario int,
-  id_amigo int
-);
+--
+-- Estructura de tabla para la tabla `registro`
+--
 
-CREATE TABLE gachapon (
-  id_usuario int,
-  tiempo date
-);
+CREATE TABLE `registro` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_pokemon` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE mensajes (
-	id INT PRIMARY KEY auto_increment,	
-  usuario varchar(250),
-	contenido varchar(250),
-	fecha_envio datetime
-)
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre_usuario` varchar(30) DEFAULT NULL,
+  `email` varchar(250) DEFAULT NULL,
+  `contraseña` varchar(30) DEFAULT NULL,
+  `administrador` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre_usuario`, `email`, `contraseña`, `administrador`) VALUES
+(1, 'admin', 'admin@admin.com', 'admin', 1);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `amigos`
+--
+ALTER TABLE `amigos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `mensajes`
+--
+ALTER TABLE `mensajes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pokemon`
+--
+ALTER TABLE `pokemon`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pokemon_datos`
+--
+ALTER TABLE `pokemon_datos`
+  ADD PRIMARY KEY (`id_pokemon`);
+
+--
+-- Indices de la tabla `regalos`
+--
+ALTER TABLE `regalos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `registro`
+--
+ALTER TABLE `registro`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `amigos`
+--
+ALTER TABLE `amigos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mensajes`
+--
+ALTER TABLE `mensajes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pokemon`
+--
+ALTER TABLE `pokemon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `regalos`
+--
+ALTER TABLE `regalos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `registro`
+--
+ALTER TABLE `registro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

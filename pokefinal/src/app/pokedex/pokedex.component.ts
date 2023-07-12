@@ -40,11 +40,11 @@ export class PokedexComponent {
 
 
   public getColeccion(id: any) {
-    return this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=coleccion&id=${id}`);
+    return this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=coleccion&id=${id}`);
   }
 
   public getPokemones(id: any) {
-    return this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=pokemones&id=${id}`);
+    return this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=pokemones&id=${id}`);
   }
 
   public getPokemon(id: any){

@@ -34,7 +34,7 @@ export class AmigosComponent {
   }
 
   buscarAmigos(idUsuario: any){
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=amigos&id=${idUsuario}`).subscribe((usuario: any) => {
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=amigos&id=${idUsuario}`).subscribe((usuario: any) => {
       this.amigos = usuario;
       
       if(this.amigos[0] != null){
@@ -48,7 +48,7 @@ export class AmigosComponent {
 
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
 
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=usuario&usuario=${this.nombreUsuario}&id=${idUsuario}`).subscribe((usuario: any) => {
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=usuario&usuario=${this.nombreUsuario}&id=${idUsuario}`).subscribe((usuario: any) => {
       this.busqueda = usuario;
       
       if(this.busqueda[0] == null){
@@ -72,11 +72,12 @@ export class AmigosComponent {
       id: idUsuario
     };
   
-    this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=amigo', body)
+    this.httpClient.post<any>('https://pokefinal.000webhostapp.com/backend/api.php?accion=amigo', body)
     .subscribe(
       data => {
         console.log(data); // Hacer algo con la respuesta si es necesario
-        location.reload(); // Recargar la página
+
+        this.buscarAmigos(idUsuario)
       },
       error => {
         console.error(error); // Manejar el error en caso de fallo en la solicitud
@@ -90,11 +91,12 @@ export class AmigosComponent {
     if (confirmacion) {
       const idUsuario = this.dataService.getId();
       
-      this.httpClient.delete<any>(`http://localhost/programacionweb/backend/api.php?accion=amigo&id=${idUsuario}&id_amigo=${id_amigo}`)
+      this.httpClient.delete<any>(`https://pokefinal.000webhostapp.com/backend/api.php?accion=amigo&id=${idUsuario}&id_amigo=${id_amigo}`)
         .subscribe(
           data => {
             console.log(data); // Hacer algo con la respuesta si es necesario
-            location.reload(); // Recargar la página
+
+            this.buscarAmigos(idUsuario)          
           },
           error => {
             console.error(error); // Manejar el error en caso de fallo en la solicitud
@@ -115,7 +117,7 @@ export class AmigosComponent {
   buscarPokemonesRepetidos(){
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
 
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=pokemonesRepetidos&id=${idUsuario}`).subscribe((pokemon: any) => {
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=pokemonesRepetidos&id=${idUsuario}`).subscribe((pokemon: any) => {
       this.pokemones = pokemon;
     });;
   }
@@ -134,7 +136,7 @@ export class AmigosComponent {
         id_pokemon: id_pokemon
       };
     
-      this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=regalo', body)
+      this.httpClient.post<any>('https://pokefinal.000webhostapp.com/backend/api.php?accion=regalo', body)
       .subscribe(
         data => {
           console.log(data); // Hacer algo con la respuesta si es necesario

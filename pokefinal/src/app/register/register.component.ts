@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     postdata(angForm1: { value: { name: any; email: any; password: any; }; })
     {
         if(this.angForm.valid){
-            this.httpClient.get<boolean>(`http://localhost/programacionweb/backend/api.php?accion=repetido&usuario=${angForm1.value.name}`)
+            this.httpClient.get<boolean>(`https://pokefinal.000webhostapp.com/backend/api.php?accion=repetido&usuario=${angForm1.value.name}`)
             .subscribe((response: any) => {
                 const repetido = response.repetido;
     

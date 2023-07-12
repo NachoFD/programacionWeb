@@ -34,7 +34,7 @@ export class PokemonComponent implements OnInit {
 
   getPokemonData(pokemonId: any) {
     this.http
-      .get<any>(`http://localhost/programacionweb/backend/api.php?accion=pokemon_datos&id=${pokemonId}`)
+      .get<any>(`https://pokefinal.000webhostapp.com/backend/api.php?accion=pokemon_datos&id=${pokemonId}`)
       .subscribe(data => {
         this.id = data[0].id;
         this.nombre = data[0].nombre_pokemon;

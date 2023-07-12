@@ -37,7 +37,7 @@ export class GatchaComponent {
 
     if(this.permiso){
 
-      this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=Gachapon', body)
+      this.httpClient.post<any>('https://pokefinal.000webhostapp.com/backend/api.php?accion=Gachapon', body)
       .subscribe(
         data => {
           this.pokemon = data.url_imagen; // Hacer algo con la respuesta si es necesario
@@ -62,7 +62,7 @@ export class GatchaComponent {
   getTiempo() {
     const idUsuario = this.dataService.getId();
   
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=tiempo&id=${idUsuario}`)
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=tiempo&id=${idUsuario}`)
       .subscribe((usuario: any) => {
         if (usuario.length > 0 && usuario[0].tiempo) {
           const gachapon = new Date(usuario[0].tiempo);

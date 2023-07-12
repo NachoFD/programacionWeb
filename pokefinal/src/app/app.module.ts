@@ -22,6 +22,8 @@ import { RegalosComponent } from './regalos/regalos.component';
 import { ChatComponent } from './chat/chat.component';
 import { AdminComponent } from './admin/admin.component';
 
+import { HashLocationStrategy , LocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { AdminComponent } from './admin/admin.component';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [MatSnackBar],
+  providers: [MatSnackBar, {provide :
+    LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

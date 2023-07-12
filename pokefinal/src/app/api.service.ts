@@ -9,7 +9,7 @@ import { Usuarios } from './usuarios';
 
 export class ApiService {
   redirectUrl: string | undefined;
-  baseUrl:string = "http://localhost/programacionweb/backend";
+  baseUrl:string = "https://pokefinal.000webhostapp.com/backend";
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
   constructor(private httpClient : HttpClient) { }

@@ -33,11 +33,11 @@ export class PerfilComponent {
   }
 
   public getPerfil(id: any) {
-    return this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=perfil&id=${id}`);
+    return this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=perfil&id=${id}`);
   }  
 
   logout(){
     this.dataService.deleteToken();
-    window.location.href = "/info";
+    window.location.href = "/";
   }
 }

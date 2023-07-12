@@ -1,11 +1,11 @@
 .fondo{
-    background-image: url('http://localhost/programacionweb/recursos/fondoInfo.jpg');
+    background-image: url('https://pokefinal.000webhostapp.com/recursos/fondoInfo.jpg');
     background-position: center;
     background-size: cover;
 }
 
 .image-button {
-  background-image: url('http://localhost/programacionweb/recursos/pokebolaGatcha.png');
+  background-image: url('https://pokefinal.000webhostapp.com/recursos/pokebolaGatcha.png');
   background-repeat: no-repeat;
   background-size: cover;
   width: 300px; 

@@ -45,7 +45,7 @@ nuevoPokemon = {
     }
     
   getAdmin(id: any){
-      this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=admin&id=${id}`).subscribe((usuario: any) => {
+      this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=admin&id=${id}`).subscribe((usuario: any) => {
 
         if(usuario != null){
           if(usuario[0].administrador == true){
@@ -83,7 +83,7 @@ nuevoPokemon = {
 
   getUsuarios(){
     const idUsuario = this.dataService.getId(); // Obtener el ID del usuario desde el almacenamiento local
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=allUsuarios&id=${idUsuario}`).subscribe((usuario: any) => {
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=allUsuarios&id=${idUsuario}`).subscribe((usuario: any) => {
       this.usuarios = usuario;
       
       if(this.usuarios[0] != null){
@@ -98,7 +98,7 @@ nuevoPokemon = {
   }
 
   getPokemones(){
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=allPokemones`).subscribe((pokemon: any) => {
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=allPokemones`).subscribe((pokemon: any) => {
       this.pokemones = pokemon;
     });;
   }
@@ -130,7 +130,7 @@ nuevoPokemon = {
     
     if (confirmacion) {
       
-      this.httpClient.delete<any>(`http://localhost/programacionweb/backend/api.php?accion=usuario&id=${id}`)
+      this.httpClient.delete<any>(`https://pokefinal.000webhostapp.com/backend/api.php?accion=usuario&id=${id}`)
         .subscribe(
           data => {
             console.log(data); // Hacer algo con la respuesta si es necesario
@@ -144,7 +144,7 @@ nuevoPokemon = {
   }
 
   postPokemon() {
-    this.httpClient.post<any>('http://localhost/programacionweb/backend/api.php?accion=pokemon', this.nuevoPokemon)
+    this.httpClient.post<any>('https://pokefinal.000webhostapp.com/backend/api.php?accion=pokemon', this.nuevoPokemon)
       .subscribe(
         data => {
           console.log(data); // Hacer algo con la respuesta si es necesario
@@ -173,6 +173,6 @@ nuevoPokemon = {
 
     console.log("Se obtuvieron todos los pokemones!")
 
-    this.httpClient.get(`http://localhost/programacionweb/backend/api.php?accion=pokemonesAdmin&id=${idUsuario}`).subscribe()
+    this.httpClient.get(`https://pokefinal.000webhostapp.com/backend/api.php?accion=pokemonesAdmin&id=${idUsuario}`).subscribe()
   }
 }
